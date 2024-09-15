@@ -16,6 +16,6 @@ public class MainMenuViewModel
 
     public void StartGame()
     {
-        _gameLoadProducer.StartGame();
+        _gameLoadProducer.StartIntroCatScene();
     }
 }

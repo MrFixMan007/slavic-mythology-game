@@ -1,7 +1,7 @@
 ﻿using VContainer;
 using VContainer.Unity;
 
-public class GameLifeTimeScope : LifetimeScope
+public class IntroCutsceneLifeTimeScope : LifetimeScope
 {
     protected override void Configure(IContainerBuilder builder)
     {
@@ -10,14 +10,7 @@ public class GameLifeTimeScope : LifetimeScope
             var gameLoader = new GameLoaderImpl();
             return gameLoader;
         }, Lifetime.Scoped).AsImplementedInterfaces().AsSelf();
-
-        builder.Register<MainMenuViewModel>(Lifetime.Singleton);
-        builder.RegisterComponentInHierarchy<MainMenuView>();
-    }
-
-    protected override void Awake()
-    {
-        base.Awake();
-        DontDestroyOnLoad(gameObject);
+        
+        builder.RegisterComponentInHierarchy<FairyTaleCutscene>();
     }
 }

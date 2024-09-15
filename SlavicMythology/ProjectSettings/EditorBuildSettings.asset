@@ -11,4 +11,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/InternalAssets/Scenes/Demo.unity
     guid: baee915398513944b9d5e18caf717ac2
+  - enabled: 1
+    path: Assets/InternalAssets/Scenes/MainMenuDan.unity
+    guid: ae23a473fa6a0024b87df88318730cb2
+  - enabled: 1
+    path: Assets/InternalAssets/Scenes/TestCutsceneDan.unity
+    guid: 3828920dc8189fa46b5fa8f1e26c542c
   m_configObjects: {}
