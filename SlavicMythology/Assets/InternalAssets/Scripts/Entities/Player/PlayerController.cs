@@ -1,4 +1,4 @@
-using System.Diagnostics;
+using System.Collections;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -6,8 +6,12 @@ using VContainer.Unity;
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed = 5f;
+    public float rollSpeed = 10f;
+    public float rollDuration = 0.5f;
     private Rigidbody2D _rb;
     private Health _health;
+    private bool isRolling = false;
+    private Vector2 rollDirection;
 
     [Inject]
     public void Construct(Health health)
@@ -22,8 +26,12 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        HandleMovement();
+        if (!isRolling)
+        {
+            HandleMovement();
+        }
         HandleAttack();
+        HandleRoll();
     }
 
     private void HandleMovement()
@@ -42,13 +50,55 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void HandleRoll()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftControl) && !isRolling)
+        {
+            float horizontal = Input.GetAxis("Horizontal");
+            float vertical = Input.GetAxis("Vertical");
+
+            if (horizontal != 0 || vertical != 0)
+            {
+                rollDirection = new Vector2(horizontal, vertical).normalized;
+                StartCoroutine(Roll());
+            }
+        }
+    }
+
+    private IEnumerator Roll()
+    {
+        isRolling = true;
+
+        // Проигрывание анимации переката
+        // на манер GetComponent<Animator>().SetTrigger("Roll");
+
+        float elapsedTime = 0f;
+        while (elapsedTime < rollDuration)
+        {
+            _rb.velocity = rollDirection * rollSpeed;
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        isRolling = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (isRolling)
+        {
+            StopAllCoroutines();
+            isRolling = false;
+            _rb.velocity = Vector2.zero;
+        }
+    }
+
     private void Attack()
     {
         UnityEngine.Debug.Log("Player attacked!");
         Vector3 mousePos = Input.mousePosition;
-        {
-            UnityEngine.Debug.Log("Player attacked! on x=" + mousePos.x + " on y = " + mousePos.y);
-        }
+        UnityEngine.Debug.Log("Player attacked! on x=" + mousePos.x + " on y = " + mousePos.y);
         // Логика для атаки
     }
 
