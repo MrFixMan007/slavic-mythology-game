@@ -1,7 +1,7 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
 public class Enemy : MonoBehaviour
 {
     public float detectionRadius = 5f;
@@ -12,6 +12,18 @@ public class Enemy : MonoBehaviour
 
     private Transform _player;
     private bool _canAttack = true;
+    private Rigidbody2D _rigidBody2D;
+    private Vector2 movement;
+
+    private void OnValidate()
+    {
+        _rigidBody2D ??= GetComponent<Rigidbody2D>();
+    }
+
+    private void Awake()
+    {
+        _rigidBody2D ??= GetComponent<Rigidbody2D>();
+    }
 
     void Start()
     {
@@ -22,12 +34,14 @@ public class Enemy : MonoBehaviour
     {
         if (_player != null)
         {
-            float distanceToPlayer = Vector2.Distance(transform.position, _player.position);
-
+            Vector3 direction = _player.position - transform.position;
+            float distanceToPlayer = direction.magnitude;
+            movement = direction.normalized;
+            
             if (distanceToPlayer <= detectionRadius)
             {
                 // Преследуем игрока
-                transform.position = Vector2.MoveTowards(transform.position, _player.position, moveSpeed * Time.deltaTime);
+                MoveChar(movement);
 
                 if (distanceToPlayer <= attackRadius && _canAttack)
                 {
@@ -35,6 +49,11 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
+    }
+    
+    private void MoveChar(Vector2 direction)
+    {
+        _rigidBody2D.MovePosition((Vector2)transform.position + (direction * moveSpeed * Time.deltaTime));
     }
 
     private IEnumerator Attack()
