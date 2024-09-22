@@ -59,7 +59,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (_path != null)
         {
