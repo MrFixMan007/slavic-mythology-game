@@ -3,10 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // Для теста, что монеты тратятся
+[RequireComponent(typeof(LootBag))]
 public class Merchant : MonoBehaviour
 {
     public int itemCost = 50;
+    private LootBag lootBag;
 
+    private void OnValidate()
+    {
+        lootBag ??= GetComponent<LootBag>();
+    }
+
+    private void Awake()
+    {
+        lootBag ??= GetComponent<LootBag>();
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -21,7 +32,7 @@ public class Merchant : MonoBehaviour
                 {
                     playerCoin.SpendCoin(itemCost);
                     Debug.Log("Предмет куплен!");
-                    
+                    lootBag.InstantiateLoot(transform.position);
                 }
                 else
                 {
