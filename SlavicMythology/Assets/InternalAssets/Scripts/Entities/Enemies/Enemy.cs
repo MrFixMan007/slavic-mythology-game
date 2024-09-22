@@ -12,6 +12,7 @@ public class Enemy : MonoBehaviour
     public float moveSpeed = 2f;
     public int damage = 10;
     public float attackCooldown = 1f;
+    public float hp = 100f;
 
     private Transform _target;
     private bool _canAttack = true;
@@ -104,5 +105,11 @@ public class Enemy : MonoBehaviour
 
         yield return new WaitForSeconds(attackCooldown);
         _canAttack = true;
+    }
+
+    private void Die()
+    {
+        GetComponent<LootBag>().InstantiateLoot(transform.position);
+        Destroy(gameObject);
     }
 }

@@ -56,6 +56,7 @@ MonoBehaviour:
   moveSpeed: 8
   damage: 10
   attackCooldown: 1
+  hp: 100
   _nextWaypointDistance: 3
 --- !u!212 &143202633793551684
 SpriteRenderer:
@@ -252,7 +253,7 @@ MonoBehaviour:
   lootList:
   - {fileID: 11400000, guid: 16e67d64ef7f1eb40ad43692ac966128, type: 2}
   rolls: 1
-  dropForce: 5
+  dropForce: 2
 --- !u!114 &1429191114509611776
 MonoBehaviour:
   m_ObjectHideFlags: 0
