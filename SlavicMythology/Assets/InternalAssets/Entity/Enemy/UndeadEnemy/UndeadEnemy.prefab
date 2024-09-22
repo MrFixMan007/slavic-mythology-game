@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 5606382635957174425}
   - component: {fileID: 3708809587981623573}
   - component: {fileID: 4964234676608745033}
+  - component: {fileID: 3800950294144974191}
   - component: {fileID: 1429191114509611776}
   m_Layer: 8
   m_Name: UndeadEnemy
@@ -236,6 +237,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -1.5}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &3800950294144974191
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5350957599802245981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90f0775202b0e2847a285fec3f2f0eac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lootList:
+  - {fileID: 11400000, guid: 16e67d64ef7f1eb40ad43692ac966128, type: 2}
+  rolls: 1
+  dropForce: 5
 --- !u!114 &1429191114509611776
 MonoBehaviour:
   m_ObjectHideFlags: 0
