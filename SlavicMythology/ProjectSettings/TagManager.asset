@@ -14,7 +14,7 @@ TagManager:
   - 
   - Player
   - Enemy
-  - Objects
+  - Obstacle
   - 
   - 
   - 
@@ -41,9 +41,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Player
-    uniqueID: 57783467
-    locked: 0
   - name: Walls
     uniqueID: 1425529959
+    locked: 0
+  - name: Enemy
+    uniqueID: 1527849999
+    locked: 0
+  - name: Player
+    uniqueID: 57783467
     locked: 0
