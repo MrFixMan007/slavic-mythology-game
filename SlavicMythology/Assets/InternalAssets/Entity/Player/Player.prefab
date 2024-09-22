@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1352117058381639112}
   - component: {fileID: 882751899255427510}
   - component: {fileID: 4983659799328282329}
+  - component: {fileID: 1702737061669116465}
   - component: {fileID: 4436798093304130711}
   - component: {fileID: 2502377633046813685}
   - component: {fileID: 4968600401565907838}
@@ -65,6 +66,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  healthText: {fileID: 0}
+--- !u!114 &1702737061669116465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6445420081052029111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e284e445d45974b4494a1d710fa972d7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxCoin: 1000
+  coinText: {fileID: 0}
 --- !u!212 &4436798093304130711
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -105,7 +121,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 57783467
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: e77521bce42076845b567f9a23d71d4f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -131,7 +147,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
