@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 1429191114509611776}
   m_Layer: 8
   m_Name: UndeadEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -52,12 +52,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectionRadius: 20
-  attackRadius: 1
+  attackRadius: 2.41
   moveSpeed: 8
   damage: 10
   attackCooldown: 1
-  hp: 100
+  hp: 37.9
   _nextWaypointDistance: 3
+  lootPrefab: {fileID: 6655130181297641493, guid: e4654c41aa08d734689d60d10223f65c, type: 3}
+  lootDropChance: 0.51
 --- !u!212 &143202633793551684
 SpriteRenderer:
   m_ObjectHideFlags: 0

@@ -25,6 +25,9 @@ public class Enemy : MonoBehaviour
 
     private Seeker _seeker;
 
+    public GameObject lootPrefab;
+    public float lootDropChance = 0.3f;
+
     private void OnValidate()
     {
         _rb ??= GetComponent<Rigidbody2D>();
@@ -67,15 +70,14 @@ public class Enemy : MonoBehaviour
             Vector3 direction = _target.position - transform.position;
             float distanceToPlayer = direction.magnitude;
 
-            if (distanceToPlayer <= detectionRadius)
+            if (distanceToPlayer <= detectionRadius && distanceToPlayer > attackRadius)
             {
                 // Преследуем игрока
                 MoveChar();
-
-                if (distanceToPlayer <= attackRadius && _canAttack)
-                {
-                    StartCoroutine(Attack());
-                }
+            }
+            else if (distanceToPlayer <= attackRadius && _canAttack)
+            {
+                StartCoroutine(Attack());
             }
         }
     }
@@ -90,6 +92,16 @@ public class Enemy : MonoBehaviour
         if (distance < _nextWaypointDistance && _currentWayPoint < _path.vectorPath.Count - 1)
         {
             _currentWayPoint++;
+        }
+    }
+
+    public void TakeDamage(int amount)
+    {
+        hp -= amount;
+        Debug.Log("Враг получил" + amount + " урона");
+        if (hp <= 0)
+        {
+            Die();
         }
     }
 
@@ -109,7 +121,12 @@ public class Enemy : MonoBehaviour
 
     private void Die()
     {
-        GetComponent<LootBag>().InstantiateLoot(transform.position);
+        //GetComponent<LootBag>().InstantiateLoot(transform.position);
+        // Destroy(gameObject);
+        if (UnityEngine.Random.value <= lootDropChance && lootPrefab != null)
+        {
+            Instantiate(lootPrefab, transform.position, Quaternion.identity);
+        }
         Destroy(gameObject);
     }
 }

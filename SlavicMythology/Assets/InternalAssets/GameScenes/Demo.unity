@@ -1200,6 +1200,11 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1 &280266466 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6655130181297641493, guid: 54660ddc571347948a25b48f888c0556, type: 3}
+  m_PrefabInstance: {fileID: 621246629}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &368846673
 GameObject:
   m_ObjectHideFlags: 0
@@ -1809,8 +1814,28 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 190324650425914045, guid: d4c529f77ac55304296cd88d8f7baab2, type: 3}
+      propertyPath: hp
+      value: 26.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 190324650425914045, guid: d4c529f77ac55304296cd88d8f7baab2, type: 3}
+      propertyPath: lootPrefab
+      value: 
+      objectReference: {fileID: 280266466}
+    - target: {fileID: 190324650425914045, guid: d4c529f77ac55304296cd88d8f7baab2, type: 3}
+      propertyPath: lootDropChance
+      value: 0.54
+      objectReference: {fileID: 0}
+    - target: {fileID: 190324650425914045, guid: d4c529f77ac55304296cd88d8f7baab2, type: 3}
+      propertyPath: detectionRadius
+      value: 9.3
+      objectReference: {fileID: 0}
     - target: {fileID: 5350957599802245981, guid: d4c529f77ac55304296cd88d8f7baab2, type: 3}
       propertyPath: m_Name
+      value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 5350957599802245981, guid: d4c529f77ac55304296cd88d8f7baab2, type: 3}
+      propertyPath: m_TagString
       value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 8852907978148593324, guid: d4c529f77ac55304296cd88d8f7baab2, type: 3}
@@ -2418,6 +2443,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 882751899255427510, guid: 7f6be3fd370255240af08a79cff85272, type: 3}
+      propertyPath: attackRadius
+      value: 3.56
+      objectReference: {fileID: 0}
     - target: {fileID: 1352117058381639112, guid: 7f6be3fd370255240af08a79cff85272, type: 3}
       propertyPath: m_LocalPosition.x
       value: 20

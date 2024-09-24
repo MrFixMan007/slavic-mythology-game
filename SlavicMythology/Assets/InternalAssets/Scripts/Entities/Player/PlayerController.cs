@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour
     private bool isRolling = false;
     private Vector2 rollDirection;
 
+    public float attackRadius = 1f;
+    public int attackDamage = 10;
+
     [Inject]
     public void Construct(Health health)
     {
@@ -97,9 +100,25 @@ public class PlayerController : MonoBehaviour
     private void Attack()
     {
         UnityEngine.Debug.Log("Player attacked!");
-        Vector3 mousePos = Input.mousePosition;
-        UnityEngine.Debug.Log("Player attacked! on x=" + mousePos.x + " on y = " + mousePos.y);
+        //Vector3 mousePos = Input.mousePosition;
+        //UnityEngine.Debug.Log("Player attacked! on x=" + mousePos.x + " on y = " + mousePos.y);
         // Логика для атаки
+        Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        worldMousePos.z = 0; 
+
+        Vector2 attackDirection = (worldMousePos - transform.position).normalized;
+        Vector2 attackPosition = (Vector2)transform.position + attackDirection * attackRadius;
+
+        RaycastHit2D hit = Physics2D.CircleCast(transform.position, attackRadius, attackDirection, attackRadius);
+
+        if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+        {
+            Enemy enemy = hit.collider.GetComponent<Enemy>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(attackDamage);
+            }
+        }
     }
 
     public void GetDamage(int damage)
