@@ -1,11 +1,15 @@
 using System;
 using System.Collections;
+using Core;
+using Core.Battle;
+using FSM.States;
+using Movement;
 using Pathfinding;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Seeker))]
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDestroyableGameObject
 {
     public float detectionRadius = 5f;
     public float attackRadius = 1f;
@@ -15,18 +19,16 @@ public class Enemy : MonoBehaviour
     public float hp = 100f;
 
     private Transform _target;
-    private bool _canAttack = true;
     private Rigidbody2D _rb;
     private Vector2 movement;
-
-    [SerializeField] private float _nextWaypointDistance = 3f;
-    private Path _path;
-    private int _currentWayPoint = 0;
 
     private Seeker _seeker;
 
     public GameObject lootPrefab;
     public float lootDropChance = 0.3f;
+
+    private FsmEnemy _fsm;
+    private SeekerMovement _seekerMovement;
 
     private void OnValidate()
     {
@@ -42,84 +44,45 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        _target = GameObject.FindGameObjectWithTag("Player").transform;
+        _target = GameObject.FindGameObjectWithTag("Player")
+            .transform; //TODO: Вместо тяжёлого метода поиска игрока по тегу нужно будет его передавать из фабрики
 
-        InvokeRepeating(nameof(UpdatePath), 0f, 0.5f);
-    }
+        _seekerMovement = new SeekerMovement(rb: _rb, target: _target, seeker: _seeker, moveSpeed: moveSpeed);
 
-    private void UpdatePath()
-    {
-        if (_seeker.IsDone())
-            _seeker.StartPath(_rb.position, _target.position, OnPathComplete);
-    }
+        _fsm = new FsmEnemy();
+        SimpleMeleeAttackService simpleMeleeAttackService =
+            new SimpleMeleeAttackService(meleeLightAttackCoolDown: attackCooldown, meleeAttackDamage: damage,
+                target: _target);
+        _fsm.AddState(new FsmStateIdle(fsm: _fsm, target: _target, path: _seekerMovement.Path, rb: _rb,
+            detectionRadius: detectionRadius, hp: hp));
+        _fsm.AddState(new FsmStateMeleeSimpleAgr(fsm: _fsm, target: _target, path: _seekerMovement.Path, rb: _rb,
+            detectionRadius: detectionRadius, hp: hp, simpleBattleService: simpleMeleeAttackService,
+            attackRadius: attackRadius, seekerMovement: _seekerMovement));
+        _fsm.AddState(new FsmStateSimpleStun(fsm: _fsm, target: _target, path: _seekerMovement.Path, rb: _rb,
+            detectionRadius: detectionRadius, hp: hp, simpleBattleService: simpleMeleeAttackService, stanTime: 1f));
+        _fsm.AddState(new FsmStateForcedPushDie(fsm: _fsm, target: _target, path: _seekerMovement.Path, rb: _rb,
+            detectionRadius: detectionRadius, hp: hp, force: 50f, gameObject: this, destroyDelay: 10f, minSpeed: 1f));
+        _fsm.SetState<FsmStatePeaceful>();
 
-
-    private void OnPathComplete(Path p)
-    {
-        if (!p.error)
-        {
-            _path = p;
-            _currentWayPoint = 0;
-        }
+        InvokeRepeating(nameof(SeekerUpdate), 0f, 0.5f);
     }
 
     void FixedUpdate()
     {
-        if (_path != null)
-        {
-            Vector3 direction = _target.position - transform.position;
-            float distanceToPlayer = direction.magnitude;
-
-            if (distanceToPlayer <= detectionRadius && distanceToPlayer > attackRadius)
-            {
-                // Преследуем игрока
-                MoveChar();
-            }
-            else if (distanceToPlayer <= attackRadius && _canAttack)
-            {
-                StartCoroutine(Attack());
-            }
-        }
+        _fsm.Update();
     }
 
-    private void MoveChar()
+    private void SeekerUpdate()
     {
-        Vector2 direction = ((Vector2)_path.vectorPath[_currentWayPoint] - _rb.position).normalized;
-        Vector2 movePosition = (Vector2)transform.position + (direction * moveSpeed * Time.deltaTime);
-        _rb.MovePosition(movePosition);
-
-        float distance = Vector2.Distance(_rb.position, _path.vectorPath[_currentWayPoint]);
-        if (distance < _nextWaypointDistance && _currentWayPoint < _path.vectorPath.Count - 1)
-        {
-            _currentWayPoint++;
-        }
+        _seekerMovement.Update();
     }
 
     public void TakeDamage(int amount)
     {
-        hp -= amount;
-        Debug.Log("Враг получил" + amount + " урона");
-        if (hp <= 0)
-        {
-            Die();
-        }
+        _fsm.Hit(amount);
     }
 
-    private IEnumerator Attack()
-    {
-        _canAttack = false;
-
-        // Логика нанесения урона
-        if (_target.TryGetComponent(out Health playerHealth))
-        {
-            playerHealth.TakeDamage(damage);
-        }
-
-        yield return new WaitForSeconds(attackCooldown);
-        _canAttack = true;
-    }
-
-    private void Die()
+    public void Destroy()
     {
         //GetComponent<LootBag>().InstantiateLoot(transform.position);
         // Destroy(gameObject);
@@ -127,6 +90,7 @@ public class Enemy : MonoBehaviour
         {
             Instantiate(lootPrefab, transform.position, Quaternion.identity);
         }
+
         Destroy(gameObject);
     }
 }
