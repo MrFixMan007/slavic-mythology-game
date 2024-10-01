@@ -1,41 +1,68 @@
 using UnityEngine;
-using VContainer;
-using VContainer.Unity;
+using System.Collections.Generic;
+
 public interface IEnemySpawner
 {
-    void SpawnEnemies(Vector3 position);
+    void SpawnWave(Vector3 roomCenter, List<EnemyWave> enemyWaves, RoomTrigger2D roomTrigger);
 }
 
 public class EnemySpawner : IEnemySpawner
 {
-    private readonly GameObject _enemyPrefab;
     private readonly float _spawnRadius;
+    private readonly LayerMask _obstacleMask;
+    private readonly int _maxAttempts = 10;
 
-    public EnemySpawner(GameObject enemyPrefab, float spawnRadius)
+    public EnemySpawner(float spawnRadius, LayerMask obstacleMask)
     {
-        _enemyPrefab = enemyPrefab;
         _spawnRadius = spawnRadius;
+        _obstacleMask = obstacleMask;
     }
 
-    private Vector3 GetRandomPositionAroundPlayer(Vector3 playerPosition, float radius)
+    private Vector3 GetSpawnPosition(Vector3 roomCenter)
     {
-        // Генерируем случайный угол и радиус
-        float angle = Random.Range(0, 2 * Mathf.PI);
-        float distance = Random.Range(0, radius);
+        for (int attempt = 0; attempt < _maxAttempts; attempt++)
+        {
+            float angle = Random.Range(0, 2 * Mathf.PI);
+            float distance = Random.Range(0, _spawnRadius);
 
-        // Вычисляем координаты точки
-        float x = playerPosition.x + distance * Mathf.Cos(angle);
-        float y = playerPosition.y + distance * Mathf.Sin(angle);
+            float x = roomCenter.x + distance * Mathf.Cos(angle);
+            float z = roomCenter.z + distance * Mathf.Sin(angle);
 
-        return new Vector3(x, y, playerPosition.z);
+            Vector3 spawnPosition = new Vector3(x, roomCenter.y, z);
+
+            if (!Physics.CheckSphere(spawnPosition, 1f, _obstacleMask))
+            {
+                return spawnPosition;
+            }
+        }
+
+        return roomCenter;
     }
 
-    public void SpawnEnemies(Vector3 position)
+    public void SpawnWave(Vector3 roomCenter, List<EnemyWave> enemyWaves, RoomTrigger2D roomTrigger)
     {
-        // Генерируем случайную позицию вокруг игрока в заданном радиусе
-        Vector3 spawnPosition = GetRandomPositionAroundPlayer(position, _spawnRadius);
+        Debug.Log("Спавним волну врагов.");
+        foreach (var wave in enemyWaves)
+        {
+            foreach (var enemyType in wave.EnemyTypes)
+            {
+                for (int i = 0; i < enemyType.Count; i++)
+                {
+                    Vector3 spawnPosition = GetSpawnPosition(roomCenter);
+                    GameObject enemy = GameObject.Instantiate(enemyType.EnemyPrefab, spawnPosition, Quaternion.identity);
+                    Debug.Log($"Спавним врага {enemy.name} в позиции {spawnPosition}");
 
-        // Спауним врага в вычисленной позиции
-        GameObject.Instantiate(_enemyPrefab, spawnPosition, Quaternion.identity);
+                    var enemyComponent = enemy.GetComponent<Enemy>();
+                    if (enemyComponent != null)
+                    {
+                        enemyComponent.OnDefeated += () =>
+                        {
+                            Debug.Log("Враг уничтожен.");
+                            roomTrigger.EnemyDefeated();
+                        };
+                    }
+                }
+            }
+        }
     }
 }

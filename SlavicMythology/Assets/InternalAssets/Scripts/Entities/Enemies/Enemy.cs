@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour, IDestroyableGameObject
 
     private Seeker _seeker;
 
+    public event Action OnDefeated;
+
     public GameObject lootPrefab;
     public float lootDropChance = 0.3f;
 
@@ -84,13 +86,12 @@ public class Enemy : MonoBehaviour, IDestroyableGameObject
 
     public void Destroy()
     {
-        //GetComponent<LootBag>().InstantiateLoot(transform.position);
-        // Destroy(gameObject);
         if (UnityEngine.Random.value <= lootDropChance && lootPrefab != null)
         {
             Instantiate(lootPrefab, transform.position, Quaternion.identity);
         }
 
+        OnDefeated?.Invoke(); // ֲûחמג סמבûעטÿ
         Destroy(gameObject);
     }
 }

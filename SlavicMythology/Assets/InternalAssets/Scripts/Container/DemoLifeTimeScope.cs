@@ -6,6 +6,7 @@ public class GameLifetimeScope : LifetimeScope
 {
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private float spawnRadius = 3f;
+    [SerializeField] private LayerMask obstacleMask;
 
     protected override void Configure(IContainerBuilder builder)
     {
@@ -22,8 +23,9 @@ public class GameLifetimeScope : LifetimeScope
 
         builder.RegisterComponentInHierarchy<Health>();
         builder.RegisterComponentInHierarchy<RoomTrigger2D>();
-        builder.Register<IEnemySpawner, EnemySpawner>(Lifetime.Singleton)
-               .WithParameter("enemyPrefab", enemyPrefab)
-               .WithParameter("spawnRadius", spawnRadius); ;
+        builder.Register<EnemySpawner>(Lifetime.Singleton)
+               .As<IEnemySpawner>()
+               .WithParameter("spawnRadius", spawnRadius)
+               .WithParameter("obstacleMask", obstacleMask);
     }
 }

@@ -99,7 +99,7 @@ public class PlayerController : MonoBehaviour
 
     private void Attack()
     {
-        UnityEngine.Debug.Log("Player attacked!");
+        //UnityEngine.Debug.Log("Player attacked!");
         //Vector3 mousePos = Input.mousePosition;
         //UnityEngine.Debug.Log("Player attacked! on x=" + mousePos.x + " on y = " + mousePos.y);
         // Логика для атаки
