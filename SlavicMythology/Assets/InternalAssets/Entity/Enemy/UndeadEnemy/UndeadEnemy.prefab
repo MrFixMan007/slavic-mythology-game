@@ -57,9 +57,6 @@ MonoBehaviour:
   damage: 10
   attackCooldown: 1
   hp: 37.9
-  _nextWaypointDistance: 3
-  lootPrefab: {fileID: 6655130181297641493, guid: e4654c41aa08d734689d60d10223f65c, type: 3}
-  lootDropChance: 0.51
 --- !u!212 &143202633793551684
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -254,6 +251,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lootList:
   - {fileID: 11400000, guid: 16e67d64ef7f1eb40ad43692ac966128, type: 2}
+  - {fileID: 11400000, guid: c477bc87c0286c54aa9d040811b31d7d, type: 2}
   rolls: 1
   dropForce: 2
 --- !u!114 &1429191114509611776

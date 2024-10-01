@@ -9,6 +9,7 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Seeker))]
+[RequireComponent(typeof(LootBag))]
 public class Enemy : MonoBehaviour, IDestroyableGameObject
 {
     public float detectionRadius = 5f;
@@ -24,22 +25,23 @@ public class Enemy : MonoBehaviour, IDestroyableGameObject
 
     private Seeker _seeker;
 
-    public GameObject lootPrefab;
-    public float lootDropChance = 0.3f;
-
     private FsmEnemy _fsm;
     private SeekerMovement _seekerMovement;
+
+    private LootBag _lbg;
 
     private void OnValidate()
     {
         _rb ??= GetComponent<Rigidbody2D>();
         _seeker ??= GetComponent<Seeker>();
+        _lbg ??= GetComponent<LootBag>();
     }
 
     private void Awake()
     {
         _rb ??= GetComponent<Rigidbody2D>();
         _seeker ??= GetComponent<Seeker>();
+        _lbg ??= GetComponent<LootBag>();
     }
 
     void Start()
@@ -84,13 +86,7 @@ public class Enemy : MonoBehaviour, IDestroyableGameObject
 
     public void Destroy()
     {
-        //GetComponent<LootBag>().InstantiateLoot(transform.position);
-        // Destroy(gameObject);
-        if (UnityEngine.Random.value <= lootDropChance && lootPrefab != null)
-        {
-            Instantiate(lootPrefab, transform.position, Quaternion.identity);
-        }
-
+        _lbg.InstantiateLoot(transform.position);
         Destroy(gameObject);
     }
 }

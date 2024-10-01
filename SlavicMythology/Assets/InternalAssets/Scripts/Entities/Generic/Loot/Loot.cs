@@ -7,9 +7,11 @@ public class Loot : ScriptableObject
 {
     [SerializeField] public GameObject lootPrefab;
     public int dropChance;
+    public int guaranteedCount;
 
-    public Loot(int dropChance)
+    public Loot(int dropChance, int guaranteedCount)
     {
-            this.dropChance = dropChance;
+        this.dropChance = dropChance;
+        this.guaranteedCount = guaranteedCount;
     }
 }

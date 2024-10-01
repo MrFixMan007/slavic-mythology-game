@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 32109f19cf8fc9046a7c43972fda5a43, type: 3}
-  m_Name: MedKitLoot
+  m_Name: SURPRISE
   m_EditorClassIdentifier: 
-  lootPrefab: {fileID: 3472528173356091685, guid: 5c3c452d94debe941baebb9a42c54cd2, type: 3}
-  dropChance: 50
+  lootPrefab: {fileID: 5350957599802245981, guid: d4c529f77ac55304296cd88d8f7baab2, type: 3}
+  dropChance: 0
+  guaranteedCount: 2
