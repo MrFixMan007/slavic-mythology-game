@@ -158,6 +158,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lootList:
-  - {fileID: 11400000, guid: c477bc87c0286c54aa9d040811b31d7d, type: 2}
+  - {fileID: 11400000, guid: 8e6af9c386bcda6489fbd86bf6ca238b, type: 2}
   rolls: 1
   dropForce: 2
