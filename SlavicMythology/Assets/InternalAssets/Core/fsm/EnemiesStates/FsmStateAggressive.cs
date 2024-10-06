@@ -8,7 +8,7 @@ namespace FSM.States
     public abstract class FsmStateAggressive : FsmStateEnemy
     {
         protected SeekerMovement SeekerMovement;
-        public float AttackRadius;//
+        public float AttackRadius;
 
         protected FsmStateAggressive(FsmEnemy fsm, Transform target, Path path, Rigidbody2D rb, float detectionRadius,
             float hp, float attackRadius, SeekerMovement seekerMovement) : base(fsm: fsm, target: target, path: path,
