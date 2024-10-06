@@ -15,7 +15,7 @@ namespace FSM.States
             rb: rb,
             detectionRadius: detectionRadius, hp: hp)
         {
-            SeekerMovement = seekerMovement;
+            SeekerMovement = seekerMovement;//
             AttackRadius = attackRadius;
         }
 
