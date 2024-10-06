@@ -16,7 +16,7 @@ namespace FSM.States
             detectionRadius: detectionRadius, hp: hp)
         {
             SeekerMovement = seekerMovement;//
-            AttackRadius = attackRadius;
+            AttackRadius = attackRadius;//
         }
 
         public override void Enter()
