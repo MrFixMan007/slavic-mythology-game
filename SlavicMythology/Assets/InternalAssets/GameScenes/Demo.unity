@@ -740,7 +740,7 @@ PrefabInstance:
       objectReference: {fileID: 500070723}
     - target: {fileID: 8341348351537995294, guid: 91e6d4aaff6a31b408244886bb919930, type: 3}
       propertyPath: m_Name
-      value: FOW
+      value: FOW1
       objectReference: {fileID: 0}
     - target: {fileID: 8341348351537995294, guid: 91e6d4aaff6a31b408244886bb919930, type: 3}
       propertyPath: m_IsActive
@@ -860,7 +860,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8341348351537995294, guid: 91e6d4aaff6a31b408244886bb919930, type: 3}
       propertyPath: m_Name
-      value: FOW (1)
+      value: FOW2
       objectReference: {fileID: 0}
     - target: {fileID: 8341348351537995294, guid: 91e6d4aaff6a31b408244886bb919930, type: 3}
       propertyPath: m_IsActive
@@ -28564,7 +28564,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1043294806}
   m_Layer: 0
-  m_Name: FOW (1)
+  m_Name: Rooms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -28995,7 +28995,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8341348351537995294, guid: 91e6d4aaff6a31b408244886bb919930, type: 3}
       propertyPath: m_Name
-      value: FOW (5)
+      value: FOW6
       objectReference: {fileID: 0}
     - target: {fileID: 8341348351537995294, guid: 91e6d4aaff6a31b408244886bb919930, type: 3}
       propertyPath: m_IsActive
@@ -29166,7 +29166,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8341348351537995294, guid: 91e6d4aaff6a31b408244886bb919930, type: 3}
       propertyPath: m_Name
-      value: FOW (2)
+      value: FOW3
       objectReference: {fileID: 0}
     - target: {fileID: 8341348351537995294, guid: 91e6d4aaff6a31b408244886bb919930, type: 3}
       propertyPath: m_IsActive
@@ -29268,7 +29268,7 @@ PrefabInstance:
       objectReference: {fileID: 1793794845}
     - target: {fileID: 8341348351537995294, guid: 91e6d4aaff6a31b408244886bb919930, type: 3}
       propertyPath: m_Name
-      value: FOW (4)
+      value: FOW5
       objectReference: {fileID: 0}
     - target: {fileID: 8341348351537995294, guid: 91e6d4aaff6a31b408244886bb919930, type: 3}
       propertyPath: m_IsActive
@@ -50456,7 +50456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8341348351537995294, guid: 91e6d4aaff6a31b408244886bb919930, type: 3}
       propertyPath: m_Name
-      value: FOW (3)
+      value: FOW4
       objectReference: {fileID: 0}
     - target: {fileID: 8341348351537995294, guid: 91e6d4aaff6a31b408244886bb919930, type: 3}
       propertyPath: m_IsActive
@@ -65362,7 +65362,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8341348351537995294, guid: 91e6d4aaff6a31b408244886bb919930, type: 3}
       propertyPath: m_Name
-      value: FOW (6)
+      value: FOW7
       objectReference: {fileID: 0}
     - target: {fileID: 8341348351537995294, guid: 91e6d4aaff6a31b408244886bb919930, type: 3}
       propertyPath: m_IsActive
