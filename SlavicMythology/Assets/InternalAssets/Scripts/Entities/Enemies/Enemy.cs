@@ -63,7 +63,7 @@ public class Enemy : MonoBehaviour, IDestroyableGameObject
         _fsm.AddState(new FsmStateSimpleStun(fsm: _fsm, target: _target, path: _seekerMovement.Path, rb: _rb,
             detectionRadius: detectionRadius, hp: hp, simpleBattleService: simpleMeleeAttackService, stanTime: 1f));
         _fsm.AddState(new FsmStateForcedPushDie(fsm: _fsm, target: _target, path: _seekerMovement.Path, rb: _rb,
-            detectionRadius: detectionRadius, hp: hp, force: 50f, gameObject: this, destroyDelay: 10f, minSpeed: 1f));
+            detectionRadius: detectionRadius, hp: hp, force: 20f, gameObject: this, destroyDelay: 1f, minSpeed: 1f));
         _fsm.SetState<FsmStatePeaceful>();
 
         InvokeRepeating(nameof(SeekerUpdate), 0f, 0.5f);
@@ -82,6 +82,11 @@ public class Enemy : MonoBehaviour, IDestroyableGameObject
     public void TakeDamage(int amount)
     {
         _fsm.Hit(amount);
+    }
+
+    public void SetAggresive()
+    {
+        _fsm.SetState<FsmStateAggressive>();
     }
 
     public void Destroy()

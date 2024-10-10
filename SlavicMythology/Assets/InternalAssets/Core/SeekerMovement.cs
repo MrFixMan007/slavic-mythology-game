@@ -9,7 +9,7 @@ namespace Movement
         private readonly Transform _target;
 
         private readonly Seeker _seeker;
-        private const float NextWaypointDistance = 3f;
+        private const float NextWaypointDistance = 1f;
         public Path Path { get; private set; }
         private int _currentWayPoint;
 

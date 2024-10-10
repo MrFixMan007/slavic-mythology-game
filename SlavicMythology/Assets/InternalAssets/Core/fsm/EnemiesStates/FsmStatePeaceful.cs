@@ -22,14 +22,14 @@ namespace FSM.States
         {
         }
 
-        public override void Update()
-        {
-            base.Update();
-            if (targetIsReachable)
-            {
-                Fsm.SetState<FsmStateAggressive>();
-            }
-        }
+        // public override void Update()
+        // {
+        //     base.Update();
+        //     if (targetIsReachable)
+        //     {
+        //         Fsm.SetState<FsmStateAggressive>();
+        //     }
+        // }
     }
 
     public class FsmStateIdle : FsmStatePeaceful
