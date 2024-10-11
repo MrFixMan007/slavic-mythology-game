@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6950395344422853278}
   - component: {fileID: 2210372605461072494}
   - component: {fileID: 3731831006256230454}
+  - component: {fileID: 2678352849705327721}
   m_Layer: 0
   m_Name: Merchant
   m_TagString: Untagged
@@ -76,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 57783467
   m_SortingLayer: 3
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 6bbd703d2c50368419fa7d52b1104085, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1d5620d08fd56d44f8dc15513265b815, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -136,7 +137,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 4.6, y: 4.4}
+    oldSize: {x: 2, y: 3}
     newSize: {x: 4.6, y: 4.4}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -160,4 +161,25 @@ MonoBehaviour:
   lootList:
   - {fileID: 11400000, guid: 8e6af9c386bcda6489fbd86bf6ca238b, type: 2}
   rolls: 1
-  dropForce: 2
+  dropForce: 2.5
+--- !u!95 &2678352849705327721
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8028874683272164914}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4e1ddb9436b87994b8c04f882c861a18, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
