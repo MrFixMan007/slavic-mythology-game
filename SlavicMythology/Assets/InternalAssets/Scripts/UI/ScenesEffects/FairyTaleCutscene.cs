@@ -12,7 +12,9 @@ public class FairyTaleCutscene : MonoBehaviour
     private IGameLoadProducer _gameLoadProducer;
 
     private int currentImageIndex = 0;
-    
+
+    public Button fastForwardButton;
+
     [Inject]
     public void Construct(IGameLoadProducer gameLoadProducer)
     {
@@ -38,6 +40,8 @@ public class FairyTaleCutscene : MonoBehaviour
         {
             img.gameObject.SetActive(false);
         }
+
+        fastForwardButton.onClick.AddListener(FastForward);
 
         StartCoroutine(PlayCutscene());
     }
@@ -100,5 +104,14 @@ public class FairyTaleCutscene : MonoBehaviour
     void LoadNextScene()
     {
         _gameLoadProducer.StartGame();
+    }
+
+    void FastForward()
+    {
+        
+        currentImageIndex = images.Length;
+
+        
+        LoadNextScene();
     }
 }
