@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 590037545659524581}
   - component: {fileID: 5454095117604509734}
   - component: {fileID: 1802629718697109983}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: FOW
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a110eaa44fc6cc54295b478435f11052, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _enemies: []
+  _doors: []
 --- !u!212 &590037545659524581
 SpriteRenderer:
   m_ObjectHideFlags: 0
