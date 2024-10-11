@@ -55,11 +55,11 @@ public class EnemySpawner : IEnemySpawner
                     var enemyComponent = enemy.GetComponent<Enemy>();
                     if (enemyComponent != null)
                     {
-                        /*enemyComponent.OnDefeated += () =>
+                        enemyComponent.OnDefeated += () =>
                         {
                             Debug.Log("Враг уничтожен.");
                             roomTrigger.EnemyDefeated();
-                        };*/
+                        };
                     }
                 }
             }

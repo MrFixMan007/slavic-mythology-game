@@ -51,6 +51,10 @@ public class RoomTrigger2D : MonoBehaviour
 
             _currentWaveIndex++;
         }
+        foreach (var door in doors)
+        {
+            door.GetComponent<Door>().open();
+        }
     }
 
     private Vector3 GetSpawnPoint()
@@ -72,6 +76,9 @@ public class RoomTrigger2D : MonoBehaviour
     public void EnemyDefeated()
     {
         _remainingEnemies--;
-        if (_remainingEnemies < 0) _remainingEnemies = 0; // Защита от отрицательных значений
+        if (_remainingEnemies < 0)
+        {
+            _remainingEnemies = 0; // Защита от отрицательных значений
+        }
     }
 }

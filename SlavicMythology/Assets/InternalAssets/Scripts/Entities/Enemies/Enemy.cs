@@ -32,6 +32,8 @@ public class Enemy : MonoBehaviour, IDestroyableGameObject
     private FsmEnemy _fsm;
     private SeekerMovement _seekerMovement;
 
+    public event Action OnDefeated;
+
     private void OnValidate()
     {
         _rb ??= GetComponent<Rigidbody2D>();
@@ -66,7 +68,7 @@ public class Enemy : MonoBehaviour, IDestroyableGameObject
             detectionRadius: detectionRadius, hp: hp, simpleBattleService: simpleMeleeAttackService, stanTime: 1f));
         _fsm.AddState(new FsmStateForcedPushDie(fsm: _fsm, target: _target, path: _seekerMovement.Path, rb: _rb,
             detectionRadius: detectionRadius, hp: hp, force: 20f, gameObject: this, destroyDelay: 1f, minSpeed: 1f));
-        _fsm.SetState<FsmStatePeaceful>();
+        _fsm.SetState<FsmStateAggressive>();
 
         InvokeRepeating(nameof(SeekerUpdate), 0f, 0.5f);
     }
@@ -86,16 +88,17 @@ public class Enemy : MonoBehaviour, IDestroyableGameObject
         _fsm.Hit(amount);
     }
 
-    public void SetAggresive()
+    /*public void SetAggresive()
     {
         _fsm.SetState<FsmStateAggressive>();
-    }
+    }*/
 
     public void Destroy()
     {
         _lbg.InstantiateLoot(transform.position);
+        OnDefeated?.Invoke();
 
-        _roomProducer.KillMob();
+        //_roomProducer.KillMob();
 
         Destroy(gameObject);
     }

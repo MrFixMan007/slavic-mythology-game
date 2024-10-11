@@ -6,8 +6,6 @@ using UnityEngine;
 public class NewBehaviourScript : MonoBehaviour
 {
     private bool entered;
-    [SerializeField] private List<Enemy> _enemies;
-    [SerializeField] private List<Door> _doors;
     private Animator _anm;
 
     private void OnValidate()
@@ -26,15 +24,6 @@ public class NewBehaviourScript : MonoBehaviour
         {
             entered = true;
             _anm.SetTrigger("Entrance");
-
-            foreach (var door in _doors)
-            {
-                door.close();
-            }
-            foreach (var enemy in _enemies)
-            {
-                enemy.SetAggresive();
-            }
             Destroy(gameObject, _anm.GetCurrentAnimatorStateInfo(0).length + 0.1f);
         }
     }
