@@ -8,6 +8,7 @@ public class RoomTrigger2D : MonoBehaviour
     [Inject] private IEnemySpawner _enemySpawner;
 
     public List<EnemyWave> EnemyWaves = new List<EnemyWave>();
+    [SerializeField] public List<GameObject> doors = new List<GameObject>();
     private int _currentWaveIndex = 0;
     private int _remainingEnemies;
     public Transform[] spawnPoints; //точки спавна
@@ -19,6 +20,10 @@ public class RoomTrigger2D : MonoBehaviour
         if (!hasSpawned && other.CompareTag("Player"))
         {
             Debug.Log("Игрок вошел в комнату, начинаем спавн волн.");
+            foreach (var door in doors)
+            {
+                door.GetComponent<Door>().close();
+            }
             hasSpawned = true;
             StartCoroutine(SpawnWaves(other.transform.position));
         }
