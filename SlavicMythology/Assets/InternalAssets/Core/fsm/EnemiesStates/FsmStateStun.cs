@@ -10,9 +10,9 @@ namespace FSM.States
         protected float StanTick;
 
         protected FsmStateStun(FsmEnemy fsm, Transform target, Path path, Rigidbody2D rb, float detectionRadius,
-            float hp, float stanTime) : base(fsm: fsm, target: target, path: path, rb: rb,
+            float hp, float stanTime, Animator animator) : base(fsm: fsm, target: target, path: path, rb: rb,
             detectionRadius: detectionRadius,
-            hp: hp)
+            hp: hp, animator: animator)
         {
             StanTime = stanTime;
         }
@@ -53,10 +53,10 @@ namespace FSM.States
         protected ISimpleBattleService SimpleBattleService;
 
         public FsmStateSimpleStun(FsmEnemy fsm, Transform target, Path path, Rigidbody2D rb, float detectionRadius,
-            float hp, float stanTime, ISimpleBattleService simpleBattleService) : base(fsm: fsm,
+            float hp, float stanTime, ISimpleBattleService simpleBattleService, Animator animator) : base(fsm: fsm,
             target: target, path: path,
             rb: rb, detectionRadius: detectionRadius,
-            hp: hp, stanTime: stanTime)
+            hp: hp, stanTime: stanTime, animator: animator)
         {
             SimpleBattleService = simpleBattleService;
         }

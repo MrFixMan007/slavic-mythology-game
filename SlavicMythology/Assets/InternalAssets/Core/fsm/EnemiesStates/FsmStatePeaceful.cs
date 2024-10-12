@@ -9,8 +9,8 @@ namespace FSM.States
 
         protected FsmStatePeaceful(FsmEnemy fsm, Transform target, Path path, Rigidbody2D rb,
             float detectionRadius,
-            float hp) : base(fsm: fsm, target: target, path: path, rb: rb, detectionRadius: detectionRadius,
-            hp: hp)
+            float hp, Animator animator) : base(fsm: fsm, target: target, path: path, rb: rb, detectionRadius: detectionRadius,
+            hp: hp, animator: animator)
         {
         }
 
@@ -35,8 +35,8 @@ namespace FSM.States
     public class FsmStateIdle : FsmStatePeaceful
     {
         public FsmStateIdle(FsmEnemy fsm, Transform target, Path path, Rigidbody2D rb, float detectionRadius,
-            float hp) : base(fsm: fsm, target: target, path: path, rb: rb, detectionRadius: detectionRadius,
-            hp: hp)
+            float hp, Animator animator) : base(fsm: fsm, target: target, path: path, rb: rb, detectionRadius: detectionRadius,
+            hp: hp, animator: animator)
         {
         }
     }

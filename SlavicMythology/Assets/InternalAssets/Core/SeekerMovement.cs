@@ -40,14 +40,31 @@ namespace Movement
 
         public void MoveChar()
         {
-            Vector2 direction = ((Vector2)Path.vectorPath[_currentWayPoint] - _rb.position).normalized;
-            Vector2 movePosition = _rb.position + (direction * _moveSpeed * Time.deltaTime);
-            _rb.MovePosition(movePosition);
-
-            float distance = Vector2.Distance(_rb.position, Path.vectorPath[_currentWayPoint]);
-            if (distance < NextWaypointDistance && _currentWayPoint < Path.vectorPath.Count - 1)
+            if (Path != null)
             {
-                _currentWayPoint++;
+                // Vector2 direction = ((Vector2)Path.vectorPath[_currentWayPoint] - _rb.position).normalized;
+                // Vector2 movePosition = _rb.position + (direction * _moveSpeed * Time.deltaTime);
+                // _rb.MovePosition(movePosition);
+                //
+                // float distance = Vector2.Distance(_rb.position, Path.vectorPath[_currentWayPoint]);
+                // if (distance < NextWaypointDistance && _currentWayPoint < Path.vectorPath.Count - 1)
+                // {
+                //     _currentWayPoint++;
+                // }
+                // Рассчет направления к следующей точке
+                Vector2 direction = ((Vector2)Path.vectorPath[_currentWayPoint] - _rb.position).normalized;
+
+                // Установка скорости через velocity для движения в нужном направлении
+                _rb.velocity = direction * _moveSpeed;
+
+                // Проверка расстояния до текущей точки пути
+                float distance = Vector2.Distance(_rb.position, Path.vectorPath[_currentWayPoint]);
+
+                // Если расстояние меньше порогового и текущая точка не последняя, переходим к следующей
+                if (distance < NextWaypointDistance && _currentWayPoint < Path.vectorPath.Count - 1)
+                {
+                    _currentWayPoint++;
+                }
             }
         }
     }

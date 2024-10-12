@@ -10,6 +10,7 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 [RequireComponent(typeof(Seeker))]
 [RequireComponent(typeof(LootBag))]
+[RequireComponent(typeof(Animator))]
 public class Enemy : MonoBehaviour, IDestroyableGameObject
 {
     public float detectionRadius = 5f;
@@ -31,14 +32,15 @@ public class Enemy : MonoBehaviour, IDestroyableGameObject
 
     private FsmEnemy _fsm;
     private SeekerMovement _seekerMovement;
-
     public event Action OnDefeated;
+    [SerializeField] private Animator _animator;
 
     private void OnValidate()
     {
         _rb ??= GetComponent<Rigidbody2D>();
         _seeker ??= GetComponent<Seeker>();
         _lbg ??= GetComponent<LootBag>();
+        _animator ??= GetComponent<Animator>();
     }
 
     private void Awake()
@@ -46,6 +48,7 @@ public class Enemy : MonoBehaviour, IDestroyableGameObject
         _rb ??= GetComponent<Rigidbody2D>();
         _seeker ??= GetComponent<Seeker>();
         _lbg ??= GetComponent<LootBag>();
+        _animator ??= GetComponent<Animator>();
     }
 
     void Start()
@@ -60,14 +63,20 @@ public class Enemy : MonoBehaviour, IDestroyableGameObject
             new SimpleMeleeAttackService(meleeLightAttackCoolDown: attackCooldown, meleeAttackDamage: damage,
                 target: _target);
         _fsm.AddState(new FsmStateIdle(fsm: _fsm, target: _target, path: _seekerMovement.Path, rb: _rb,
-            detectionRadius: detectionRadius, hp: hp));
+            detectionRadius: detectionRadius, hp: hp, animator: _animator));
+
         _fsm.AddState(new FsmStateMeleeSimpleAgr(fsm: _fsm, target: _target, path: _seekerMovement.Path, rb: _rb,
             detectionRadius: detectionRadius, hp: hp, simpleBattleService: simpleMeleeAttackService,
-            attackRadius: attackRadius, seekerMovement: _seekerMovement));
+            attackRadius: attackRadius, seekerMovement: _seekerMovement, animator: _animator));
+
         _fsm.AddState(new FsmStateSimpleStun(fsm: _fsm, target: _target, path: _seekerMovement.Path, rb: _rb,
-            detectionRadius: detectionRadius, hp: hp, simpleBattleService: simpleMeleeAttackService, stanTime: 1f));
+            detectionRadius: detectionRadius, hp: hp, simpleBattleService: simpleMeleeAttackService, stanTime: 1f,
+            animator: _animator));
+
         _fsm.AddState(new FsmStateForcedPushDie(fsm: _fsm, target: _target, path: _seekerMovement.Path, rb: _rb,
-            detectionRadius: detectionRadius, hp: hp, force: 20f, gameObject: this, destroyDelay: 1f, minSpeed: 1f));
+            detectionRadius: detectionRadius, hp: hp, force: 20f, gameObject: this, destroyDelay: 1f, minSpeed: 1f,
+            animator: _animator));
+
         _fsm.SetState<FsmStateAggressive>();
 
         InvokeRepeating(nameof(SeekerUpdate), 0f, 0.5f);

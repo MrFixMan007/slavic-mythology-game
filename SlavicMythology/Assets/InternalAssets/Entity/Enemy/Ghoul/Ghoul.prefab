@@ -52,11 +52,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectionRadius: 20
-  attackRadius: 2.41
+  attackRadius: 3
   moveSpeed: 8
   damage: 10
-  attackCooldown: 1
-  hp: 37.9
+  attackCooldown: 0.5
+  hp: 38
+  _animator: {fileID: 5606382635957174425}
 --- !u!212 &143202633793551684
 SpriteRenderer:
   m_ObjectHideFlags: 0

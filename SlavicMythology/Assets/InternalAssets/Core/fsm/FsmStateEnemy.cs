@@ -14,9 +14,10 @@ namespace FSM
         protected float DetectionRadius;
         protected IHealthService HealthService;
         protected bool targetIsReachable;
+        protected Animator Animator;
 
         protected FsmStateEnemy(FsmEnemy fsm, Transform target, Path path, Rigidbody2D rb, float detectionRadius,
-            float hp)
+            float hp, Animator animator)
         {
             Fsm = fsm;
             Target = target;
@@ -24,6 +25,7 @@ namespace FSM
             Rb = rb;
             DetectionRadius = detectionRadius;
             HealthService = new HealthService(hp);
+            Animator = animator;
         }
 
         protected bool TargetIsReachable()

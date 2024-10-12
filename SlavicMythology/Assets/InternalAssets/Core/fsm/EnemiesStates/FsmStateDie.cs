@@ -9,10 +9,10 @@ namespace FSM.States
         protected IDestroyableGameObject GameObject;
 
         protected FsmStateDie(FsmEnemy fsm, Transform target, Path path, Rigidbody2D rb, float detectionRadius,
-            float hp, IDestroyableGameObject gameObject) : base(
+            float hp, IDestroyableGameObject gameObject, Animator animator) : base(
             fsm: fsm, target: target, path: path, rb: rb,
             detectionRadius: detectionRadius,
-            hp: hp)
+            hp: hp, animator: animator)
         {
             GameObject = gameObject;
         }
@@ -41,10 +41,10 @@ namespace FSM.States
 
         public FsmStateForcedPushDie(FsmEnemy fsm, Transform target, Path path, Rigidbody2D rb,
             float detectionRadius, float hp, IDestroyableGameObject gameObject, float force, float minSpeed,
-            float destroyDelay) : base(
+            float destroyDelay, Animator animator) : base(
             fsm: fsm, target: target, path: path, rb: rb,
             detectionRadius: detectionRadius,
-            hp: hp, gameObject: gameObject)
+            hp: hp, gameObject: gameObject, animator: animator)
         {
             Force = force;
             MinSpeed = minSpeed;

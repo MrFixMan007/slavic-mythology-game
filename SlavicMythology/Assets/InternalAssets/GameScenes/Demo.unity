@@ -11097,7 +11097,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyWaves:
   - EnemyTypes:
-    - EnemyPrefab: {fileID: 5350957599802245981, guid: d4c529f77ac55304296cd88d8f7baab2, type: 3}
+    - EnemyPrefab: {fileID: 5350957599802245981, guid: 8bdf4e3b9a71a324b9fe66587f169251, type: 3}
       Count: 4
   doors:
   - {fileID: 1857914413}
@@ -13673,7 +13673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyWaves:
   - EnemyTypes:
-    - EnemyPrefab: {fileID: 5350957599802245981, guid: d4c529f77ac55304296cd88d8f7baab2, type: 3}
+    - EnemyPrefab: {fileID: 5350957599802245981, guid: 8bdf4e3b9a71a324b9fe66587f169251, type: 3}
       Count: 6
   doors:
   - {fileID: 1746506525}
@@ -22035,6 +22035,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1134683889}
+    - target: {fileID: 4983659799328282329, guid: 7f6be3fd370255240af08a79cff85272, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 4983659799328282329, guid: 7f6be3fd370255240af08a79cff85272, type: 3}
       propertyPath: healthText
       value: 
