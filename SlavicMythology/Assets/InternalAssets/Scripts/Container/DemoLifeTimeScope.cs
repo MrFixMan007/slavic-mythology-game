@@ -23,10 +23,24 @@ public class GameLifetimeScope : LifetimeScope
         builder.RegisterEntryPoint<GameManager>();
 
         builder.RegisterComponentInHierarchy<Health>();
-        builder.RegisterComponentInHierarchy<RoomTrigger2D>();
+
+        //builder.RegisterComponentInHierarchy<RoomTrigger2D>();
+
         builder.Register<EnemySpawner>(Lifetime.Singleton)
-               .As<IEnemySpawner>()
-               .WithParameter("spawnRadius", spawnRadius)
-               .WithParameter("obstacleMask", obstacleMask);
+            .As<IEnemySpawner>()
+            .WithParameter("spawnRadius", spawnRadius)
+            .WithParameter("obstacleMask", obstacleMask);
+
+        // builder.RegisterComponentInHierarchy<RoomTrigger2D>();
     }
+
+    private void Start()
+    {
+        var enemySpawner = Container.Resolve<IEnemySpawner>();
+        foreach (var roomTrigger in FindObjectsOfType<RoomTrigger2D>())
+        {
+            roomTrigger.SetEnemySpawner(enemySpawner);
+        }
+    }
+
 }

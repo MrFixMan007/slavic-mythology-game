@@ -62,7 +62,7 @@ namespace FSM.States
 
             if (vector.x > 3f)
             {
-                Debug.Log("x: " + vector.x);
+                //Debug.Log("x: " + vector.x);
                 Animator.ResetTrigger(AnimStates.IdleLeft.ToString());
                 Animator.ResetTrigger(AnimStates.IdleBack.ToString());
                 Animator.ResetTrigger(AnimStates.IdleFront.ToString());
@@ -76,7 +76,7 @@ namespace FSM.States
             }
             else if (vector.x < -3)
             {
-                Debug.Log("x: " + vector.x);
+                //Debug.Log("x: " + vector.x);
                 Animator.ResetTrigger(AnimStates.IdleRight.ToString());
                 Animator.ResetTrigger(AnimStates.IdleBack.ToString());
                 Animator.ResetTrigger(AnimStates.IdleFront.ToString());
@@ -90,7 +90,7 @@ namespace FSM.States
             }
             else if (vector.y > 5f)
             {
-                Debug.Log("y: " + vector.y);
+                //Debug.Log("y: " + vector.y);
                 Animator.ResetTrigger(AnimStates.IdleLeft.ToString());
                 Animator.ResetTrigger(AnimStates.IdleRight.ToString());
                 Animator.ResetTrigger(AnimStates.IdleFront.ToString());
@@ -104,7 +104,7 @@ namespace FSM.States
             }
             else if (vector.y < -5)
             {
-                Debug.Log("y: " + vector.y);
+                //Debug.Log("y: " + vector.y);
                 Animator.ResetTrigger(AnimStates.IdleLeft.ToString());
                 Animator.ResetTrigger(AnimStates.IdleRight.ToString());
                 Animator.ResetTrigger(AnimStates.IdleBack.ToString());
@@ -128,7 +128,7 @@ namespace FSM.States
                 {
                     if (vector.x > 0.5f)
                     {
-                        Debug.Log("x: " + vector.x);
+                        //Debug.Log("x: " + vector.x);
                         Animator.ResetTrigger(AnimStates.IdleLeft.ToString());
                         Animator.ResetTrigger(AnimStates.IdleBack.ToString());
                         Animator.ResetTrigger(AnimStates.IdleFront.ToString());
@@ -142,7 +142,7 @@ namespace FSM.States
                     }
                     else if (vector.x < -0.5f)
                     {
-                        Debug.Log("x: " + vector.x);
+                        //Debug.Log("x: " + vector.x);
                         Animator.ResetTrigger(AnimStates.IdleRight.ToString());
                         Animator.ResetTrigger(AnimStates.IdleBack.ToString());
                         Animator.ResetTrigger(AnimStates.IdleFront.ToString());
@@ -156,7 +156,7 @@ namespace FSM.States
                     }
                     else if (vector.y > 0.5f)
                     {
-                        Debug.Log("y: " + vector.y);
+                        //Debug.Log("y: " + vector.y);
                         Animator.ResetTrigger(AnimStates.IdleLeft.ToString());
                         Animator.ResetTrigger(AnimStates.IdleRight.ToString());
                         Animator.ResetTrigger(AnimStates.IdleFront.ToString());
@@ -170,7 +170,7 @@ namespace FSM.States
                     }
                     else if (vector.y < -0.5f)
                     {
-                        Debug.Log("y: " + vector.y);
+                        //Debug.Log("y: " + vector.y);
                         Animator.ResetTrigger(AnimStates.IdleLeft.ToString());
                         Animator.ResetTrigger(AnimStates.IdleRight.ToString());
                         Animator.ResetTrigger(AnimStates.IdleBack.ToString());
