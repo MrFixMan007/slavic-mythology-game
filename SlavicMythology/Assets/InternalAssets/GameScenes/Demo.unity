@@ -11098,7 +11098,15 @@ MonoBehaviour:
   EnemyWaves:
   - EnemyTypes:
     - EnemyPrefab: {fileID: 5350957599802245981, guid: 8bdf4e3b9a71a324b9fe66587f169251, type: 3}
-      Count: 4
+      Count: 2
+  - EnemyTypes:
+    - EnemyPrefab: {fileID: 5350957599802245981, guid: 8bdf4e3b9a71a324b9fe66587f169251, type: 3}
+      Count: 1
+    - EnemyPrefab: {fileID: 5350957599802245981, guid: d4c529f77ac55304296cd88d8f7baab2, type: 3}
+      Count: 2
+  PotentialRewards:
+  - RewardPrefab: {fileID: 6655130181297641493, guid: 54660ddc571347948a25b48f888c0556, type: 3}
+    SpawnChance: 100
   doors:
   - {fileID: 1857914413}
   - {fileID: 1232715956}
@@ -11108,6 +11116,7 @@ MonoBehaviour:
   - {fileID: 1474279029}
   - {fileID: 151194656}
   - {fileID: 398322111}
+  rewardSpawnPoint: {fileID: 398322111}
 --- !u!66 &362250903
 CompositeCollider2D:
   m_ObjectHideFlags: 0
@@ -11534,6 +11543,7 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 256
+  roomTriggerPrefab: {fileID: 0}
 --- !u!1 &459346137
 GameObject:
   m_ObjectHideFlags: 0
@@ -13675,6 +13685,7 @@ MonoBehaviour:
   - EnemyTypes:
     - EnemyPrefab: {fileID: 5350957599802245981, guid: 8bdf4e3b9a71a324b9fe66587f169251, type: 3}
       Count: 6
+  PotentialRewards: []
   doors:
   - {fileID: 1746506525}
   - {fileID: 470248586}
@@ -13686,6 +13697,7 @@ MonoBehaviour:
   - {fileID: 1033174804}
   - {fileID: 1215215845}
   - {fileID: 385398983}
+  rewardSpawnPoint: {fileID: 0}
 --- !u!483693784 &1186876257
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -27851,8 +27863,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyWaves: []
+  PotentialRewards: []
   doors: []
   spawnPoints: []
+  rewardSpawnPoint: {fileID: 0}
 --- !u!483693784 &1405319770
 TilemapRenderer:
   m_ObjectHideFlags: 0

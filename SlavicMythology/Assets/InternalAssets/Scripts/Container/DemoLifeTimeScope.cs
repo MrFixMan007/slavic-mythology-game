@@ -7,6 +7,7 @@ public class GameLifetimeScope : LifetimeScope
     [SerializeField] private GameObject enemyPrefab;
     [SerializeField] private float spawnRadius = 3f;
     [SerializeField] private LayerMask obstacleMask;
+    [SerializeField] private RoomTrigger2D roomTriggerPrefab;
 
     protected override void Configure(IContainerBuilder builder)
     {

@@ -3,15 +3,26 @@ using VContainer;
 using System.Collections;
 using System.Collections.Generic;
 
+[System.Serializable]
+public class Reward
+{
+    public GameObject RewardPrefab;
+    public float SpawnChance;
+}
+
 public class RoomTrigger2D : MonoBehaviour
 {
     [Inject] private IEnemySpawner _enemySpawner;
 
     public List<EnemyWave> EnemyWaves = new List<EnemyWave>();
+    public List<Reward> PotentialRewards = new List<Reward>(); // Новый список наград
     [SerializeField] public List<GameObject> doors = new List<GameObject>();
+
     private int _currentWaveIndex = 0;
     private int _remainingEnemies;
-    public Transform[] spawnPoints; //точки спавна
+    public Transform[] spawnPoints;
+
+    public Transform rewardSpawnPoint;
 
     private bool hasSpawned = false;
 
@@ -19,66 +30,65 @@ public class RoomTrigger2D : MonoBehaviour
     {
         if (!hasSpawned && other.CompareTag("Player"))
         {
-            Debug.Log("Игрок вошел в комнату, начинаем спавн волн.");
             foreach (var door in doors)
             {
                 door.GetComponent<Door>().close();
             }
             hasSpawned = true;
-            StartCoroutine(SpawnWaves(other.transform.position));
+            StartCoroutine(SpawnWaves(rewardSpawnPoint.position));
         }
-        else
-        {
-            //Debug.Log("Объект вошел в комнату, но это не игрок.");
-        }
-    }  
+    }
 
-
-    private IEnumerator SpawnWaves(Vector3 roomCenter)
+    private IEnumerator SpawnWaves(Vector3 rewardSpawnPoint)
     {
         while (_currentWaveIndex < EnemyWaves.Count)
         {
-            
-
             var currentWave = EnemyWaves[_currentWaveIndex];
             _remainingEnemies = currentWave.EnemyCount;
             _enemySpawner.SpawnWave(GetSpawnPoint(), new List<EnemyWave> { currentWave }, this);
 
             while (_remainingEnemies > 0)
             {
-                yield return null; // Ждем, пока все враги не будут уничтожены
+                yield return null;
             }
 
             _currentWaveIndex++;
         }
+
+        SpawnReward(rewardSpawnPoint);
+
         foreach (var door in doors)
         {
             door.GetComponent<Door>().open();
         }
     }
 
+    private void SpawnReward(Vector3 position)
+    {
+        foreach (var reward in PotentialRewards)
+        {
+            if (Random.value <= reward.SpawnChance)
+            {
+                Instantiate(reward.RewardPrefab, position, Quaternion.identity);
+                break; // Предполагаем один приз
+            }
+        }
+    }
+
     private Vector3 GetSpawnPoint()
     {
-        // Выбираем случайную точку спавна из массива
         if (spawnPoints.Length > 0)
         {
             int spawnIndex = Random.Range(0, spawnPoints.Length);
             return spawnPoints[spawnIndex].position;
         }
-        else
-        {
-            Debug.LogWarning("Не указаны точки спавна!");
-            return transform.position; // Возврат по умолчанию
-        }
+
+        Debug.LogWarning("Не указаны точки спавна!");
+        return transform.position;
     }
 
-    // Вызывается, когда враг уничтожен
     public void EnemyDefeated()
     {
-        _remainingEnemies--;
-        if (_remainingEnemies < 0)
-        {
-            _remainingEnemies = 0; // Защита от отрицательных значений
-        }
+        _remainingEnemies = Mathf.Max(0, _remainingEnemies - 1);
     }
 }
