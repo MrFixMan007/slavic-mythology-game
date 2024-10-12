@@ -173,7 +173,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 1e0aa5d420726d948bc85646f4f329b9, type: 2}
   - {fileID: 11400000, guid: 07d0f6491065b03469173ef1d3ce4b70, type: 2}
   rolls: 2
-  dropForce: 4
+  dropForce: 1.5
 --- !u!114 &6067143019698123120
 MonoBehaviour:
   m_ObjectHideFlags: 0
