@@ -4,6 +4,7 @@ using FSM.Animation;
 using Movement;
 using Pathfinding;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace FSM.States
 {
@@ -11,6 +12,7 @@ namespace FSM.States
     {
         protected SeekerMovement SeekerMovement;
         public float AttackRadius;
+        protected AnimFsm AnimFsm;
 
         protected FsmStateAggressive(FsmEnemy fsm, Transform target, Path path, Rigidbody2D rb, float detectionRadius,
             float hp, float attackRadius, SeekerMovement seekerMovement, Animator animator) : base(fsm: fsm,
@@ -18,8 +20,9 @@ namespace FSM.States
             rb: rb,
             detectionRadius: detectionRadius, hp: hp, animator: animator)
         {
-            SeekerMovement = seekerMovement; //
+            SeekerMovement = seekerMovement;
             AttackRadius = attackRadius;
+            AnimFsm = AnimFsm.CreateSampleAnimFsm(animator: animator);
         }
 
         public override void Enter()
@@ -42,7 +45,18 @@ namespace FSM.States
 
     public class FsmStateMeleeSimpleAgr : FsmStateAggressive
     {
+        private enum MoveDirectionEnum
+        {
+            Left,
+            Right,
+            Forward,
+            Back,
+        }
+
         private ISimpleBattleService _simpleBattleService;
+        private float _velocityFlag = 1f;
+
+        private MoveDirectionEnum _currentDirection;
 
         public FsmStateMeleeSimpleAgr(FsmEnemy fsm, Transform target, Path path, Rigidbody2D rb, float detectionRadius,
             float hp, SeekerMovement seekerMovement, ISimpleBattleService simpleBattleService, float attackRadius,
@@ -51,6 +65,7 @@ namespace FSM.States
             detectionRadius: detectionRadius, hp: hp, attackRadius: attackRadius, seekerMovement: seekerMovement,
             animator: animator)
         {
+            _currentDirection = MoveDirectionEnum.Forward;
             _simpleBattleService = simpleBattleService;
         }
 
@@ -59,62 +74,54 @@ namespace FSM.States
             base.Update();
 
             Vector2 vector = Rb.velocity;
+            Debug.Log("y " + vector.y);
+            Debug.Log("x " + vector.x);
 
-            if (vector.x > 3f)
+            if (vector.x > _velocityFlag)
             {
-                //Debug.Log("x: " + vector.x);
-                Animator.ResetTrigger(AnimStates.IdleLeft.ToString());
-                Animator.ResetTrigger(AnimStates.IdleBack.ToString());
-                Animator.ResetTrigger(AnimStates.IdleFront.ToString());
-                
-                Animator.ResetTrigger(AnimStates.AttackLeft.ToString());
-                Animator.ResetTrigger(AnimStates.AttackBack.ToString());
-                Animator.ResetTrigger(AnimStates.AttackFront.ToString());
-                Animator.ResetTrigger(AnimStates.AttackRight.ToString());
-
-                Animator.SetTrigger(AnimStates.IdleRight.ToString());
+                AnimFsm.SetState(AnimEnums.WalkRight);
+                _currentDirection = MoveDirectionEnum.Right;
             }
-            else if (vector.x < -3)
+            else if (vector.x < -_velocityFlag)
             {
-                //Debug.Log("x: " + vector.x);
-                Animator.ResetTrigger(AnimStates.IdleRight.ToString());
-                Animator.ResetTrigger(AnimStates.IdleBack.ToString());
-                Animator.ResetTrigger(AnimStates.IdleFront.ToString());
-                
-                Animator.ResetTrigger(AnimStates.AttackLeft.ToString());
-                Animator.ResetTrigger(AnimStates.AttackBack.ToString());
-                Animator.ResetTrigger(AnimStates.AttackFront.ToString());
-                Animator.ResetTrigger(AnimStates.AttackRight.ToString());
-
-                Animator.SetTrigger(AnimStates.IdleLeft.ToString());
+                AnimFsm.SetState(AnimEnums.WalkLeft);
+                _currentDirection = MoveDirectionEnum.Left;
             }
-            else if (vector.y > 5f)
+            else if (vector.y > _velocityFlag * 2)
             {
-                //Debug.Log("y: " + vector.y);
-                Animator.ResetTrigger(AnimStates.IdleLeft.ToString());
-                Animator.ResetTrigger(AnimStates.IdleRight.ToString());
-                Animator.ResetTrigger(AnimStates.IdleFront.ToString());
-                
-                Animator.ResetTrigger(AnimStates.AttackLeft.ToString());
-                Animator.ResetTrigger(AnimStates.AttackBack.ToString());
-                Animator.ResetTrigger(AnimStates.AttackFront.ToString());
-                Animator.ResetTrigger(AnimStates.AttackRight.ToString());
-
-                Animator.SetTrigger(AnimStates.IdleBack.ToString());
+                AnimFsm.SetState(AnimEnums.WalkBack);
+                _currentDirection = MoveDirectionEnum.Forward;
             }
-            else if (vector.y < -5)
+            else if (vector.y < _velocityFlag * 2)
             {
-                //Debug.Log("y: " + vector.y);
-                Animator.ResetTrigger(AnimStates.IdleLeft.ToString());
-                Animator.ResetTrigger(AnimStates.IdleRight.ToString());
-                Animator.ResetTrigger(AnimStates.IdleBack.ToString());
-                
-                Animator.ResetTrigger(AnimStates.AttackLeft.ToString());
-                Animator.ResetTrigger(AnimStates.AttackBack.ToString());
-                Animator.ResetTrigger(AnimStates.AttackFront.ToString());
-                Animator.ResetTrigger(AnimStates.AttackRight.ToString());
-
-                Animator.SetTrigger(AnimStates.IdleFront.ToString());
+                AnimFsm.SetState(AnimEnums.WalkFront);
+                _currentDirection = MoveDirectionEnum.Back;
+            }
+            else
+            {
+                switch (_currentDirection)
+                {
+                    case MoveDirectionEnum.Right:
+                    {
+                        AnimFsm.SetState(AnimEnums.IdleRight);
+                        break;
+                    }
+                    case MoveDirectionEnum.Left:
+                    {
+                        AnimFsm.SetState(AnimEnums.IdleLeft);
+                        break;
+                    }
+                    case MoveDirectionEnum.Forward:
+                    {
+                        AnimFsm.SetState(AnimEnums.IdleFront);
+                        break;
+                    }
+                    case MoveDirectionEnum.Back:
+                    {
+                        AnimFsm.SetState(AnimEnums.IdleBack);
+                        break;
+                    }
+                }
             }
 
             if (!_simpleBattleService.CanHit)
@@ -126,62 +133,30 @@ namespace FSM.States
                 if (((Vector2)Target.position - Rb.position).magnitude <= AttackRadius &&
                     _simpleBattleService.CanHit)
                 {
-                    if (vector.x > 0.5f)
+                    switch (_currentDirection)
                     {
-                        //Debug.Log("x: " + vector.x);
-                        Animator.ResetTrigger(AnimStates.IdleLeft.ToString());
-                        Animator.ResetTrigger(AnimStates.IdleBack.ToString());
-                        Animator.ResetTrigger(AnimStates.IdleFront.ToString());
-                        Animator.ResetTrigger(AnimStates.IdleRight.ToString());
-
-                        Animator.ResetTrigger(AnimStates.AttackLeft.ToString());
-                        Animator.ResetTrigger(AnimStates.AttackBack.ToString());
-                        Animator.ResetTrigger(AnimStates.AttackFront.ToString());
-
-                        Animator.SetTrigger(AnimStates.AttackRight.ToString());
+                        case MoveDirectionEnum.Right:
+                        {
+                            AnimFsm.SetState(AnimEnums.AttackRight);
+                            break;
+                        }
+                        case MoveDirectionEnum.Left:
+                        {
+                            AnimFsm.SetState(AnimEnums.AttackLeft);
+                            break;
+                        }
+                        case MoveDirectionEnum.Forward:
+                        {
+                            AnimFsm.SetState(AnimEnums.AttackFront);
+                            break;
+                        }
+                        case MoveDirectionEnum.Back:
+                        {
+                            AnimFsm.SetState(AnimEnums.AttackBack);
+                            break;
+                        }
                     }
-                    else if (vector.x < -0.5f)
-                    {
-                        //Debug.Log("x: " + vector.x);
-                        Animator.ResetTrigger(AnimStates.IdleRight.ToString());
-                        Animator.ResetTrigger(AnimStates.IdleBack.ToString());
-                        Animator.ResetTrigger(AnimStates.IdleFront.ToString());
-                        Animator.ResetTrigger(AnimStates.IdleLeft.ToString());
 
-                        Animator.ResetTrigger(AnimStates.AttackRight.ToString());
-                        Animator.ResetTrigger(AnimStates.AttackBack.ToString());
-                        Animator.ResetTrigger(AnimStates.AttackFront.ToString());
-
-                        Animator.SetTrigger(AnimStates.AttackLeft.ToString());
-                    }
-                    else if (vector.y > 0.5f)
-                    {
-                        //Debug.Log("y: " + vector.y);
-                        Animator.ResetTrigger(AnimStates.IdleLeft.ToString());
-                        Animator.ResetTrigger(AnimStates.IdleRight.ToString());
-                        Animator.ResetTrigger(AnimStates.IdleFront.ToString());
-                        Animator.ResetTrigger(AnimStates.IdleBack.ToString());
-
-                        Animator.ResetTrigger(AnimStates.AttackRight.ToString());
-                        Animator.ResetTrigger(AnimStates.AttackLeft.ToString());
-                        Animator.ResetTrigger(AnimStates.AttackFront.ToString());
-
-                        Animator.SetTrigger(AnimStates.AttackBack.ToString());
-                    }
-                    else if (vector.y < -0.5f)
-                    {
-                        //Debug.Log("y: " + vector.y);
-                        Animator.ResetTrigger(AnimStates.IdleLeft.ToString());
-                        Animator.ResetTrigger(AnimStates.IdleRight.ToString());
-                        Animator.ResetTrigger(AnimStates.IdleBack.ToString());
-                        Animator.ResetTrigger(AnimStates.IdleFront.ToString());
-
-                        Animator.ResetTrigger(AnimStates.AttackRight.ToString());
-                        Animator.ResetTrigger(AnimStates.AttackLeft.ToString());
-                        Animator.ResetTrigger(AnimStates.AttackBack.ToString());
-
-                        Animator.SetTrigger(AnimStates.AttackFront.ToString());
-                    }
                     _simpleBattleService.Attack();
                 }
                 else SeekerMovement.MoveChar();
