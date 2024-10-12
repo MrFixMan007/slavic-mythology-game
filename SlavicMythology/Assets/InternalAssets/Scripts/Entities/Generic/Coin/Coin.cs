@@ -45,7 +45,7 @@ public class Coin : MonoBehaviour
     {
         if (coinText != null)
         {
-            coinText.text = "Coins: " + currentCoin.ToString();
+            coinText.text = ": " + currentCoin.ToString();
         }
     }
 
