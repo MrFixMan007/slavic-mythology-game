@@ -20,6 +20,7 @@ public class Chest : MonoBehaviour
         _anm ??= GetComponent<Animator>();
         _lbg ??= GetComponent<LootBag>();
     }
+
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && !looted)

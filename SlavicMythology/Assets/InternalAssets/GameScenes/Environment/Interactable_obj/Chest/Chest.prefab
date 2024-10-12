@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7915390006299120370}
   - component: {fileID: 6509347730885392660}
   - component: {fileID: 269621163992153607}
+  - component: {fileID: 6067143019698123120}
   m_Layer: 0
   m_Name: Chest
   m_TagString: Untagged
@@ -173,3 +174,17 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 07d0f6491065b03469173ef1d3ce4b70, type: 2}
   rolls: 2
   dropForce: 4
+--- !u!114 &6067143019698123120
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6655130181297641493}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0c3b56216efe341971241c48f5b56e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  middleSortingTag: Walls
+  activeRoom: 1
