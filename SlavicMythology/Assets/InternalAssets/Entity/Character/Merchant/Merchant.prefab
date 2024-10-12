@@ -10,9 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8244523261989201635}
   - component: {fileID: -792258828223268274}
-  - component: {fileID: 6950395344422853278}
   - component: {fileID: 2210372605461072494}
-  - component: {fileID: 3731831006256230454}
   - component: {fileID: 2678352849705327721}
   - component: {fileID: 3945703801274181699}
   m_Layer: 0
@@ -89,19 +87,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &6950395344422853278
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8028874683272164914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7af9a13917eb5214cac607235ec90f48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  itemCost: 1
 --- !u!61 &2210372605461072494
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -147,22 +132,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.6, y: 4.4}
   m_EdgeRadius: 0
---- !u!114 &3731831006256230454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8028874683272164914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90f0775202b0e2847a285fec3f2f0eac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lootList:
-  - {fileID: 11400000, guid: 8e6af9c386bcda6489fbd86bf6ca238b, type: 2}
-  rolls: 1
-  dropForce: 2.5
 --- !u!95 &2678352849705327721
 Animator:
   serializedVersion: 5
