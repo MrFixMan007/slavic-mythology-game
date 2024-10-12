@@ -48,7 +48,7 @@ public class ShopItemBuy : MonoBehaviour
 
         itemNameText.text = itemName;
         itemDescriptionText.text = itemDescription;
-        itemPriceText.text = "Златников: " + itemCost.ToString();
+        itemPriceText.text = "Стоимость: " + itemCost.ToString();
         isPlayerInRange = true;
 
         if (purchaseButton != null)
