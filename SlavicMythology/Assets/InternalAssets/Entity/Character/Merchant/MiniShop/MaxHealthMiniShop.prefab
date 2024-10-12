@@ -71,7 +71,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.76, y: 1.76}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 0.76, y: 1.76}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -121,7 +121,7 @@ SpriteRenderer:
   m_SortingLayerID: 57783467
   m_SortingLayer: 3
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: f7b562f2046c33743aeb99f78436bf0c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f1cbfea50bbf82446a5e959c9b7b40eb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -144,11 +144,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d2b051246ab9ba49a505adaac29f702, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: "\u0412\u043E\u043B\u0433\u0430"
-  itemDescription: "\u0423\u0432\u0435\u043B\u0438\u0447\u0438\u0432\u0430\u0435\u0442
-    \u043C\u0430\u043A\u0441\u0438\u043C\u0430\u043B\u044C\u043D\u043E\u0435 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u0435
+  itemName: "\u041A\u0440\u0443\u0436\u043A\u0430 \u043A\u0432\u0430\u0441\u0430"
+  itemDescription: "\u0423\u043A\u0440\u0435\u043F\u043B\u044F\u0435\u0442 \u0437\u0434\u043E\u0440\u043E\u0432\u044C\u0435
     \u0438 \u043F\u043E\u043B\u043D\u043E\u0441\u0442\u044C\u044E \u0438\u0437\u043B\u0435\u0447\u0438\u0432\u0430\u0435\u0442
-    \u0434\u0443\u0448\u0435\u0432\u043D\u044B\u0435 \u0440\u0430\u043D\u044B"
+    \u0440\u0430\u043D\u044B"
   itemCost: 0
   itemEffect: {fileID: 11400000, guid: eb36dc420ddeb664a9e72d75fd0f4e26, type: 2}
   purchaseSound: {fileID: 8300000, guid: 04d1e392cc9c1dd408548968d5db9035, type: 3}
