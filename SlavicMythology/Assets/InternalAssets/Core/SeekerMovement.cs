@@ -67,5 +67,10 @@ namespace Movement
                 }
             }
         }
+
+        public void StopChar()
+        {
+            _rb.velocity = Vector2.zero;
+        }
     }
 }

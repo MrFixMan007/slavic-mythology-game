@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour, IDestroyableGameObject
 
         _fsm.AddState(new FsmStateSimpleStun(fsm: _fsm, target: _target, path: _seekerMovement.Path, rb: _rb,
             detectionRadius: detectionRadius, hp: hp, simpleBattleService: simpleMeleeAttackService, stanTime: 1f,
-            animator: _animator));
+            animator: _animator, seekerMovement: _seekerMovement));
 
         _fsm.AddState(new FsmStateForcedPushDie(fsm: _fsm, target: _target, path: _seekerMovement.Path, rb: _rb,
             detectionRadius: detectionRadius, hp: hp, force: 7f, gameObject: this, destroyDelay: 1f, minSpeed: 1f,

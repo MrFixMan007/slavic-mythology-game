@@ -1,4 +1,5 @@
 using Core.Battle;
+using Movement;
 using Pathfinding;
 using UnityEngine;
 
@@ -8,17 +9,20 @@ namespace FSM.States
     {
         protected float StanTime;
         protected float StanTick;
+        protected SeekerMovement SeekerMovement;
 
         protected FsmStateStun(FsmEnemy fsm, Transform target, Path path, Rigidbody2D rb, float detectionRadius,
-            float hp, float stanTime, Animator animator) : base(fsm: fsm, target: target, path: path, rb: rb,
+            float hp, float stanTime, Animator animator, SeekerMovement seekerMovement) : base(fsm: fsm, target: target, path: path, rb: rb,
             detectionRadius: detectionRadius,
             hp: hp, animator: animator)
         {
             StanTime = stanTime;
+            SeekerMovement = seekerMovement;
         }
 
         public override void Enter()
         {
+            StanTick = 0;
         }
 
         public override void Exit()
@@ -29,6 +33,7 @@ namespace FSM.States
         public override void Update()
         {
             base.Update();
+            SeekerMovement.StopChar();
             StanTick += Time.deltaTime;
             if (StanTick > StanTime)
             {
@@ -53,10 +58,10 @@ namespace FSM.States
         protected ISimpleBattleService SimpleBattleService;
 
         public FsmStateSimpleStun(FsmEnemy fsm, Transform target, Path path, Rigidbody2D rb, float detectionRadius,
-            float hp, float stanTime, ISimpleBattleService simpleBattleService, Animator animator) : base(fsm: fsm,
+            float hp, float stanTime, ISimpleBattleService simpleBattleService, Animator animator, SeekerMovement seekerMovement) : base(fsm: fsm,
             target: target, path: path,
             rb: rb, detectionRadius: detectionRadius,
-            hp: hp, stanTime: stanTime, animator: animator)
+            hp: hp, stanTime: stanTime, animator: animator, seekerMovement: seekerMovement)
         {
             SimpleBattleService = simpleBattleService;
         }
