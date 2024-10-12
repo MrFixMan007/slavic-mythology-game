@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3077171048286737294}
   - component: {fileID: -3018117401627193906}
   - component: {fileID: 8333513891040007766}
+  - component: {fileID: 5788519062030298628}
   m_Layer: 9
   m_Name: Cauldron big
   m_TagString: Untagged
@@ -120,3 +121,17 @@ CapsuleCollider2D:
   m_Offset: {x: 0.010013655, y: 0.11564159}
   m_Size: {x: 1.0042194, y: 0.2012543}
   m_Direction: 1
+--- !u!114 &5788519062030298628
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6962682615309330897}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0c3b56216efe341971241c48f5b56e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  middleSortingTag: FOW
+  activeRoom: 1
