@@ -52,7 +52,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detectionRadius: 20
-  attackRadius: 3
+  attackRadius: 3.52
   moveSpeed: 8
   damage: 10
   attackCooldown: 0.5

@@ -500,7 +500,7 @@ Transform:
   m_GameObject: {fileID: 151194655}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 122.44, y: -18.87, z: 0}
+  m_LocalPosition: {x: 119.38, y: -10.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11638,7 +11638,7 @@ Transform:
   m_GameObject: {fileID: 398322110}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 135.16, y: -24.14, z: 0}
+  m_LocalPosition: {x: 133.05, y: -16.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13770,7 +13770,7 @@ MonoBehaviour:
   EnemyWaves:
   - EnemyTypes:
     - EnemyPrefab: {fileID: 5350957599802245981, guid: 8bdf4e3b9a71a324b9fe66587f169251, type: 3}
-      Count: 6
+      Count: 1
   PotentialRewards: []
   doors:
   - {fileID: 1746506525}
@@ -13783,7 +13783,7 @@ MonoBehaviour:
   - {fileID: 1033174804}
   - {fileID: 1215215845}
   - {fileID: 385398983}
-  rewardSpawnPoint: {fileID: 0}
+  rewardSpawnPoint: {fileID: 1215215845}
 --- !u!483693784 &1186876257
 TilemapRenderer:
   m_ObjectHideFlags: 0
@@ -36536,7 +36536,7 @@ Transform:
   m_GameObject: {fileID: 1474279028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 131.64, y: -5.02, z: 0}
+  m_LocalPosition: {x: 131.64, y: -5.82, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

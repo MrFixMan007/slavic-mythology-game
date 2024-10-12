@@ -12,7 +12,7 @@ public class Reward
 
 public class RoomTrigger2D : MonoBehaviour
 {
-    [Inject] private IEnemySpawner _enemySpawner;
+    private IEnemySpawner _enemySpawner;
 
     public List<EnemyWave> EnemyWaves = new List<EnemyWave>();
     public List<Reward> PotentialRewards = new List<Reward>(); // Новый список наград
@@ -25,6 +25,11 @@ public class RoomTrigger2D : MonoBehaviour
     public Transform rewardSpawnPoint;
 
     private bool hasSpawned = false;
+
+    public void SetEnemySpawner(IEnemySpawner enemySpawner)
+    {
+        _enemySpawner = enemySpawner;
+    }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -87,8 +92,13 @@ public class RoomTrigger2D : MonoBehaviour
         return transform.position;
     }
 
+    // Вызывается, когда враг уничтожен
     public void EnemyDefeated()
     {
-        _remainingEnemies = Mathf.Max(0, _remainingEnemies - 1);
+        _remainingEnemies--;
+        if (_remainingEnemies < 0)
+        {
+            _remainingEnemies = 0; // Защита от отрицательных значений
+        }
     }
 }
