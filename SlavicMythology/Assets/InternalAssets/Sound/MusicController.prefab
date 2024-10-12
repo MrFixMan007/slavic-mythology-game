@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3337596944090814973}
-  - component: {fileID: 1798125641248268139}
+  - component: {fileID: 4143062322405384123}
   - component: {fileID: 5729314914100525033}
   - component: {fileID: -863624217427811365}
   m_Layer: 0
@@ -34,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1798125641248268139
+--- !u!114 &4143062322405384123
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,7 +43,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4842098723762477961}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91105bbbb9675e04b8da805a88260e22, type: 3}
+  m_Script: {fileID: 11500000, guid: fbd3fb5c0816c5f4db5760fcca17659d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   calmMusicSource: {fileID: 5729314914100525033}
@@ -62,7 +62,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4255e83a21f1e28429fec7a8ad128c12, type: 3}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
