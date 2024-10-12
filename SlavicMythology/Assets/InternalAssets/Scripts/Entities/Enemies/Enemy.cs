@@ -74,7 +74,7 @@ public class Enemy : MonoBehaviour, IDestroyableGameObject
             animator: _animator));
 
         _fsm.AddState(new FsmStateForcedPushDie(fsm: _fsm, target: _target, path: _seekerMovement.Path, rb: _rb,
-            detectionRadius: detectionRadius, hp: hp, force: 20f, gameObject: this, destroyDelay: 1f, minSpeed: 1f,
+            detectionRadius: detectionRadius, hp: hp, force: 7f, gameObject: this, destroyDelay: 1f, minSpeed: 1f,
             animator: _animator));
 
         _fsm.SetState<FsmStateAggressive>();
