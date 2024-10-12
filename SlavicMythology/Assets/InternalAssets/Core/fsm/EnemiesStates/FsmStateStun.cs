@@ -1,4 +1,5 @@
 using Core.Battle;
+using FSM.Animation;
 using Movement;
 using Pathfinding;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace FSM.States
         protected float StanTime;
         protected float StanTick;
         protected SeekerMovement SeekerMovement;
+        private float _velocityFlag = 1f;
 
         protected FsmStateStun(FsmEnemy fsm, Transform target, Path path, Rigidbody2D rb, float detectionRadius,
             float hp, float stanTime, Animator animator, SeekerMovement seekerMovement) : base(fsm: fsm, target: target, path: path, rb: rb,
@@ -22,18 +24,47 @@ namespace FSM.States
 
         public override void Enter()
         {
+            Vector2 vector = Rb.velocity;
+            
+            // –ассчитываем обратную силу по ос€м X и Y, противоположную текущей скорости
+            Vector2 force = -vector * 2f;
+
+            // ѕримен€ем силу к Rigidbody2D
+            Rb.AddForce(force, ForceMode2D.Impulse);
+            
+            if (vector.x > _velocityFlag)
+            {
+                Animator.SetTrigger(AnimEnums.IdleRight.ToString());
+            }
+            else if (vector.x < -_velocityFlag)
+            {
+                Animator.SetTrigger(AnimEnums.IdleLeft.ToString());
+            }
+            else if (vector.y > _velocityFlag * 2)
+            {
+                Animator.SetTrigger(AnimEnums.IdleBack.ToString());
+            }
+            else if (vector.y < _velocityFlag * 2)
+            {
+                Animator.SetTrigger(AnimEnums.IdleFront.ToString());
+            }
+            
             StanTick = 0;
         }
 
         public override void Exit()
         {
+            Animator.ResetTrigger(AnimEnums.IdleRight.ToString());
+            Animator.ResetTrigger(AnimEnums.IdleLeft.ToString());
+            Animator.ResetTrigger(AnimEnums.IdleBack.ToString());
+            Animator.ResetTrigger(AnimEnums.IdleFront.ToString());
             StanTick = 0;
         }
 
         public override void Update()
         {
             base.Update();
-            SeekerMovement.StopChar();
+            // SeekerMovement.StopChar();
             StanTick += Time.deltaTime;
             if (StanTick > StanTime)
             {
