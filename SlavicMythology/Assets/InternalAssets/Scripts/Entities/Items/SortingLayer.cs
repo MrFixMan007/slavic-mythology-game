@@ -7,8 +7,11 @@ public class SortingLayer : MonoBehaviour
     private GameObject _playerObject;
     private TilemapRenderer _tRr;
     private SpriteRenderer _sRr;
+    private SpriteRenderer[] _sRrs;
     private Collider2D _cldr;
+    [SerializeField] private string lowSortingTag = "Walls";
     [SerializeField] private string middleSortingTag = "FOW";
+    [SerializeField] private string highSortingTag = "FOW";
     float playerBoundLow, objBoundLow, objBoundHi;
     public bool activeRoom = true;
 
@@ -29,11 +32,12 @@ public class SortingLayer : MonoBehaviour
     void Start()
     {
         _playerObject = GameObject.FindGameObjectWithTag("Player");
+        _sRrs = GetComponentsInChildren<SpriteRenderer>();
     }
 
     void Update()
     {
-        if (!activeRoom)
+        if (activeRoom)
         {
             playerBoundLow = _playerObject.GetComponent<Collider2D>().bounds.min.y /*- _playerObject.transform.position.y*/;
             objBoundLow = /*_cldr.transform.position.y -*/ _cldr.bounds.min.y;
@@ -44,17 +48,29 @@ public class SortingLayer : MonoBehaviour
                 // игрок перед
                 if (playerBoundLow < objBoundLow)
                 {
-                    _tRr.sortingLayerName = "Walls";
+                    _tRr.sortingLayerName = lowSortingTag;
+                    foreach (var srr in _sRrs)
+                    {
+                        srr.sortingLayerName = lowSortingTag;
+                    }
                 }
                 // игрок рядом
                 else if (playerBoundLow > objBoundLow && playerBoundLow < objBoundHi)
                 {
                     _tRr.sortingLayerName = middleSortingTag;
+                    foreach (var srr in _sRrs)
+                    {
+                        srr.sortingLayerName = middleSortingTag;
+                    }
                 }
                 // игрок за
                 else
                 {
-                    _tRr.sortingLayerName = "FOW";
+                    _tRr.sortingLayerName = highSortingTag;
+                    foreach (var srr in _sRrs)
+                    {
+                        srr.sortingLayerName = highSortingTag;
+                    }
                 }
             }
             else if (_sRr)
@@ -62,17 +78,29 @@ public class SortingLayer : MonoBehaviour
                 // игрок перед
                 if (playerBoundLow < objBoundLow)
                 {
-                    _sRr.sortingLayerName = "Walls";
+                    _sRr.sortingLayerName = lowSortingTag;
+                    foreach (var srr in _sRrs)
+                    {
+                        srr.sortingLayerName = lowSortingTag;
+                    }
                 }
                 // игрок рядом
                 else if (playerBoundLow > objBoundLow && playerBoundLow < objBoundHi)
                 {
                     _sRr.sortingLayerName = middleSortingTag;
+                    foreach (var srr in _sRrs)
+                    {
+                        srr.sortingLayerName = middleSortingTag;
+                    }
                 }
                 // игрок за
                 else
                 {
-                    _sRr.sortingLayerName = "FOW";
+                    _sRr.sortingLayerName = highSortingTag;
+                    foreach (var srr in _sRrs)
+                    {
+                        srr.sortingLayerName = highSortingTag;
+                    }
                 }
             }
         }
