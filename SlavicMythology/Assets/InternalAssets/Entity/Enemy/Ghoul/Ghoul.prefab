@@ -251,10 +251,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lootList:
-  - {fileID: 11400000, guid: 16e67d64ef7f1eb40ad43692ac966128, type: 2}
-  - {fileID: 11400000, guid: c477bc87c0286c54aa9d040811b31d7d, type: 2}
+  - {fileID: 11400000, guid: 1cc42d64d60b66a4da5df20fff5120a2, type: 2}
+  - {fileID: 11400000, guid: 4740914fd3df7ec4dadeef3b4b4adadf, type: 2}
   rolls: 1
-  dropForce: 2
+  dropForce: 1.5
 --- !u!114 &1429191114509611776
 MonoBehaviour:
   m_ObjectHideFlags: 0

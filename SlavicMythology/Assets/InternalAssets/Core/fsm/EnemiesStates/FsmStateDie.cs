@@ -1,4 +1,5 @@
 using Core;
+using FSM.Animation;
 using Pathfinding;
 using UnityEngine;
 
@@ -39,6 +40,8 @@ namespace FSM.States
         private float _timeSincePush;
         private Vector2 _direction;
 
+        private float _velocityFlag = 1f;
+
         public FsmStateForcedPushDie(FsmEnemy fsm, Transform target, Path path, Rigidbody2D rb,
             float detectionRadius, float hp, IDestroyableGameObject gameObject, float force, float minSpeed,
             float destroyDelay, Animator animator) : base(
@@ -53,6 +56,24 @@ namespace FSM.States
 
         public override void Enter()
         {
+            Vector2 vector = Rb.velocity;
+            if (vector.x > _velocityFlag)
+            {
+                Animator.SetTrigger(AnimEnums.IdleRight.ToString());
+            }
+            else if (vector.x < -_velocityFlag)
+            {
+                Animator.SetTrigger(AnimEnums.IdleLeft.ToString());
+            }
+            else if (vector.y > _velocityFlag * 2)
+            {
+                Animator.SetTrigger(AnimEnums.IdleBack.ToString());
+            }
+            else if (vector.y < _velocityFlag * 2)
+            {
+                Animator.SetTrigger(AnimEnums.IdleFront.ToString());
+            }
+
             _direction = (Rb.position - (Vector2)Target.position).normalized;
             Rb.AddForce(_direction * Force, ForceMode2D.Impulse);
         }

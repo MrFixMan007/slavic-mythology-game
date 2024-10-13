@@ -1,7 +1,9 @@
+using System;
 using UnityEngine;
 using VContainer;
 using System.Collections;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 [System.Serializable]
 public class Reward
@@ -25,6 +27,7 @@ public class RoomTrigger2D : MonoBehaviour
     public Transform rewardSpawnPoint;
 
     private bool hasSpawned = false;
+    [SerializeField] private MusicController _musicController;
 
     public void SetEnemySpawner(IEnemySpawner enemySpawner)
     {
@@ -35,10 +38,13 @@ public class RoomTrigger2D : MonoBehaviour
     {
         if (!hasSpawned && other.CompareTag("Player"))
         {
+            _musicController?.SwitchToDynamicMusic();
+
             foreach (var door in doors)
             {
                 door.GetComponent<Door>().close();
             }
+
             hasSpawned = true;
             StartCoroutine(SpawnWaves(rewardSpawnPoint.position));
         }
@@ -61,6 +67,7 @@ public class RoomTrigger2D : MonoBehaviour
         }
 
         SpawnReward(rewardSpawnPoint);
+        _musicController?.SwitchToCalmMusic();
 
         foreach (var door in doors)
         {
