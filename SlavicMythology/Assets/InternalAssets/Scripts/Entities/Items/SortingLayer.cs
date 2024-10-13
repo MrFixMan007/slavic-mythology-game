@@ -33,7 +33,7 @@ public class SortingLayer : MonoBehaviour
 
     void Update()
     {
-        if (activeRoom)
+        if (!activeRoom)
         {
             playerBoundLow = _playerObject.GetComponent<Collider2D>().bounds.min.y /*- _playerObject.transform.position.y*/;
             objBoundLow = /*_cldr.transform.position.y -*/ _cldr.bounds.min.y;
