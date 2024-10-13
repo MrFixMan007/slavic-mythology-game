@@ -49,7 +49,40 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) // ЛКМ для атаки
         {
+            DetermineAttackDirection();
             Attack();
+        }
+    }
+
+    private void DetermineAttackDirection()
+    {
+        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 playerPosition = transform.position;
+
+        float deltaX = mousePosition.x - playerPosition.x;
+        float deltaY = mousePosition.y - playerPosition.y;
+
+        if (Mathf.Abs(deltaX) > Mathf.Abs(deltaY))
+        {
+            if (deltaX > 0)
+            {
+                Debug.Log("Атака справа");
+            }
+            else
+            {
+                Debug.Log("Атака слева");
+            }
+        }
+        else
+        {
+            if (deltaY > 0)
+            {
+                Debug.Log("Атака сверху");
+            }
+            else
+            {
+                Debug.Log("Атака снизу");
+            }
         }
     }
 
