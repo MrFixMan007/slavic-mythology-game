@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2502377633046813685}
   - component: {fileID: 4968600401565907838}
   - component: {fileID: 3161987788024154003}
+  - component: {fileID: 4124016294513264862}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -53,6 +54,9 @@ MonoBehaviour:
   moveSpeed: 8
   rollSpeed: 12
   rollDuration: 0.5
+  attackRadius: 1
+  attackDamage: 10
+  _animator: {fileID: 4124016294513264862}
 --- !u!114 &4983659799328282329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,6 +70,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  healthBar: {fileID: 0}
+  normalHealthColor: {r: 0, g: 1, b: 0, a: 1}
+  criticalHealthColor: {r: 1, g: 0, b: 0, a: 1}
+  criticalHealthThreshold: 0.3
   healthText: {fileID: 0}
 --- !u!114 &1702737061669116465
 MonoBehaviour:
@@ -240,3 +248,24 @@ CircleCollider2D:
   m_Offset: {x: 0, y: -1.77}
   serializedVersion: 2
   m_Radius: 0.5966673
+--- !u!95 &4124016294513264862
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6445420081052029111}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1ddc9d854c2176645b390bb6d563dd8f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

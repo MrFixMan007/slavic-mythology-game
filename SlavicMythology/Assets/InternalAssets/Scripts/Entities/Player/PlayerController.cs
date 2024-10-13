@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using FSM.Animation;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -16,15 +18,26 @@ public class PlayerController : MonoBehaviour
     public float attackRadius = 1f;
     public int attackDamage = 10;
 
+    [SerializeField] private Animator _animator;
+    private AnimFsm _animFsm;
+
     [Inject]
     public void Construct(Health health)
     {
         _health = health;
+        _animator ??= GetComponent<Animator>();
+        _animFsm = AnimFsm.CreatePlayerSampleAnimFsm(animator: _animator);
     }
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _animator ??= GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        _animFsm ??= AnimFsm.CreatePlayerSampleAnimFsm(animator: _animator);
     }
 
     private void Update()
@@ -33,6 +46,7 @@ public class PlayerController : MonoBehaviour
         {
             HandleMovement();
         }
+
         HandleAttack();
         HandleRoll();
     }
@@ -41,6 +55,29 @@ public class PlayerController : MonoBehaviour
     {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+
+        if (horizontal > 0)
+        {
+            _animFsm.SetState(AnimEnums.WalkRight);
+        }
+        else if (horizontal < 0)
+        {
+            _animFsm.SetState(AnimEnums.WalkLeft);
+        }
+        else if (vertical > 0)
+        {
+            _animFsm.SetState(AnimEnums.WalkBack);
+        }
+        else if (vertical < 0)
+        {
+            _animFsm.SetState(AnimEnums.WalkFront);
+        }
+
+        if (horizontal == 0 && vertical == 0)
+        {
+            _animFsm.SetState(AnimEnums.IdleFront);
+        }
+
         Vector2 moveDirection = new Vector2(horizontal, vertical).normalized;
         _rb.velocity = moveDirection * moveSpeed;
     }
@@ -49,6 +86,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0)) // ЛКМ для атаки
         {
+            _animFsm.SetState(AnimEnums.AttackFront);
             DetermineAttackDirection();
             Attack();
         }
@@ -137,7 +175,7 @@ public class PlayerController : MonoBehaviour
         //UnityEngine.Debug.Log("Player attacked! on x=" + mousePos.x + " on y = " + mousePos.y);
         // Логика для атаки
         Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        worldMousePos.z = 0; 
+        worldMousePos.z = 0;
 
         Vector2 attackDirection = (worldMousePos - transform.position).normalized;
         Vector2 attackPosition = (Vector2)transform.position + attackDirection * attackRadius;

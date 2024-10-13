@@ -75,6 +75,28 @@ namespace FSM.Animation
             };
             return new AnimFsm(animator: animator, states: animStates);
         }
+        
+        public static AnimFsm CreatePlayerSampleAnimFsm(Animator animator)
+        {
+            List<AnimState> animStates = new List<AnimState>
+            {
+                new(animEnums: AnimEnums.IdleFront),
+                new(animEnums: AnimEnums.IdleBack),
+                new(animEnums: AnimEnums.IdleLeft),
+                new(animEnums: AnimEnums.IdleRight),
+
+                new(animEnums: AnimEnums.AttackFront),
+                new(animEnums: AnimEnums.AttackBack),
+                new(animEnums: AnimEnums.AttackLeft),
+                new(animEnums: AnimEnums.AttackRight),
+
+                new(animEnums: AnimEnums.WalkFront),
+                new(animEnums: AnimEnums.WalkBack),
+                new(animEnums: AnimEnums.WalkLeft),
+                new(animEnums: AnimEnums.WalkRight),
+            };
+            return new AnimFsm(animator: animator, states: animStates);
+        }
 
         public void SetState(AnimEnums animEnums)
         {
