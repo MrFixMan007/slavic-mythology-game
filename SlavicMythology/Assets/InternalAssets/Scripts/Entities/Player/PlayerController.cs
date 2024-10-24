@@ -15,6 +15,9 @@ public class PlayerController : MonoBehaviour
     private Vector2 rollDirection;
     private Vector2 movementDirection; // Направление ходьбы
 
+    [SerializeField]  private float attackCooldown = 1f; //  кулдаун атаки
+    private float lastAttackTime = 0f;
+
     public Collider2D attackArea; // ссылка на коллайдер зоны атаки
 
     public float attackRadius = 1f;
@@ -111,11 +114,12 @@ public class PlayerController : MonoBehaviour
 
     private void HandleAttack()
     {
-        if (Input.GetMouseButtonDown(0)) // ЛКМ для атаки
+        if (Time.time - lastAttackTime >= attackCooldown && Input.GetMouseButtonDown(0)) // ЛКМ для атаки
         {
             _animFsm.SetState(AnimEnums.AttackFront);
             DetermineAttackDirection();
             Attack();
+            lastAttackTime = Time.time;
         }
     }
 
@@ -196,9 +200,7 @@ public class PlayerController : MonoBehaviour
         
     public void Attack()
     {
-        Collider2D[] hits = Physics2D.OverlapBoxAll(attackArea.bounds.center,
-                                                    attackArea.bounds.size,
-                                                    0f);
+        Collider2D[] hits = Physics2D.OverlapBoxAll(attackArea.bounds.center, attackArea.bounds.size, 0f);
 
         foreach (Collider2D hit in hits)
         {
@@ -208,6 +210,11 @@ public class PlayerController : MonoBehaviour
                 if (enemy != null)
                 {
                     enemy.TakeDamage(attackDamage);
+
+                    // Отталкивание врага
+                    Vector2 pushDirection = (enemy.transform.position - transform.position).normalized;
+                    float pushForce = 0.1f; //  сила отталкивания
+                    enemy.GetComponent<Rigidbody2D>().AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
                 }
             }
         }

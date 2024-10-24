@@ -34821,6 +34821,10 @@ PrefabInstance:
       value: 1.23
       objectReference: {fileID: 0}
     - target: {fileID: 882751899255427510, guid: 7f6be3fd370255240af08a79cff85272, type: 3}
+      propertyPath: attackCooldown
+      value: 0.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 882751899255427510, guid: 7f6be3fd370255240af08a79cff85272, type: 3}
       propertyPath: attackOffset.y
       value: -1.55
       objectReference: {fileID: 0}
