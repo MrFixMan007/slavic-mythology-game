@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using FSM.Animation;
 using UnityEngine;
@@ -14,12 +13,18 @@ public class PlayerController : MonoBehaviour
     private Health _health;
     private bool isRolling = false;
     private Vector2 rollDirection;
+    private Vector2 movementDirection; // Направление ходьбы
+
+    public Collider2D attackArea; // ссылка на коллайдер зоны атаки
 
     public float attackRadius = 1f;
     public int attackDamage = 10;
 
     [SerializeField] private Animator _animator;
     private AnimFsm _animFsm;
+
+    public Vector2 attackOffset = Vector2.zero; // Смещение центра атаки
+
 
     [Inject]
     public void Construct(Health health)
@@ -56,6 +61,8 @@ public class PlayerController : MonoBehaviour
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
+        movementDirection = new Vector2(horizontal, vertical);
+
         if (horizontal > 0)
         {
             _animFsm.SetState(AnimEnums.WalkRight);
@@ -78,8 +85,28 @@ public class PlayerController : MonoBehaviour
             _animFsm.SetState(AnimEnums.IdleFront);
         }
 
-        Vector2 moveDirection = new Vector2(horizontal, vertical).normalized;
+        Vector2 moveDirection = movementDirection.normalized;
         _rb.velocity = moveDirection * moveSpeed;
+        UpdateAttackAreaPosition();
+    }
+
+    private void UpdateAttackAreaPosition()
+    {
+        if (movementDirection != Vector2.zero)
+        {
+            Vector2 adjustedPosition = movementDirection.normalized * attackRadius + attackOffset;
+            attackArea.transform.localPosition = adjustedPosition;
+
+            // Проверка направления движения для отражения коллайдера
+            if (movementDirection.y < 0)
+            {
+                attackArea.transform.localScale = new Vector3(-1, 1, 1); // Отражение по горизонтали
+            }
+            else
+            {
+                attackArea.transform.localScale = new Vector3(1, 1, 1);
+            }
+        }
     }
 
     private void HandleAttack()
@@ -143,8 +170,7 @@ public class PlayerController : MonoBehaviour
     {
         isRolling = true;
 
-        // Проигрывание анимации переката
-        // на манер GetComponent<Animator>().SetTrigger("Roll");
+        // Запуск анимации переката
 
         float elapsedTime = 0f;
         while (elapsedTime < rollDuration)
@@ -167,27 +193,22 @@ public class PlayerController : MonoBehaviour
             _rb.velocity = Vector2.zero;
         }
     }
-
-    private void Attack()
+        
+    public void Attack()
     {
-        //UnityEngine.Debug.Log("Player attacked!");
-        //Vector3 mousePos = Input.mousePosition;
-        //UnityEngine.Debug.Log("Player attacked! on x=" + mousePos.x + " on y = " + mousePos.y);
-        // Логика для атаки
-        Vector3 worldMousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        worldMousePos.z = 0;
+        Collider2D[] hits = Physics2D.OverlapBoxAll(attackArea.bounds.center,
+                                                    attackArea.bounds.size,
+                                                    0f);
 
-        Vector2 attackDirection = (worldMousePos - transform.position).normalized;
-        Vector2 attackPosition = (Vector2)transform.position + attackDirection * attackRadius;
-
-        RaycastHit2D hit = Physics2D.CircleCast(transform.position, attackRadius, attackDirection, attackRadius);
-
-        if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+        foreach (Collider2D hit in hits)
         {
-            Enemy enemy = hit.collider.GetComponent<Enemy>();
-            if (enemy != null)
+            if (hit.CompareTag("Enemy"))
             {
-                enemy.TakeDamage(attackDamage);
+                Enemy enemy = hit.GetComponent<Enemy>();
+                if (enemy != null)
+                {
+                    enemy.TakeDamage(attackDamage);
+                }
             }
         }
     }
