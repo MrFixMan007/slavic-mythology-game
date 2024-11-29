@@ -6,7 +6,7 @@ using System.Linq;
 [InitializeOnLoad]
 public class HierarchyIconDisplay
 {
-    static bool show_prefabs = true;
+    static bool show_prefabs = false;
     static bool _hierarchyHasFocus = false;
     static EditorWindow _hierarchyEditorWindow;
 
