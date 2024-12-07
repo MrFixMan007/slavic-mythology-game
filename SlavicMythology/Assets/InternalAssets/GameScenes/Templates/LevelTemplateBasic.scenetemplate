@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   templateScene: {fileID: 102900000, guid: 53c95257d807b0246818c9c79bd47bab, type: 3}
   templateName: Basic level template
-  description: Camera,UI,background,light,music,tilemaps.
+  description: Player,Camera,UI,background,light,music,tilemaps.
   preview: {fileID: 0}
   dependencies:
   - dependency: {fileID: 2800000, guid: 61329ad3082f4074c80ba31160fd6a86, type: 3}
@@ -191,6 +191,6 @@ MonoBehaviour:
     instantiationMode: 1
   - dependency: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
     instantiationMode: 1
-  templatePipeline: {fileID: 0}
+  templatePipeline: {fileID: 11500000, guid: 954678c1955dc6d40bd25067b8b7484b, type: 3}
   badge: {fileID: 0}
   addToDefaults: 1
