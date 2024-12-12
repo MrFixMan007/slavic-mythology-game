@@ -62,8 +62,10 @@ Material:
     m_Ints: []
     m_Floats:
     - _EnableExternalAlpha: 0
-    - _WindScale: 1
-    - _windSpeed: 1
+    - _WindScale: 2.83
+    - _windRefMask: 3.6
+    - _windSpeed: 0.83
+    - _windStrength: 0.3
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}

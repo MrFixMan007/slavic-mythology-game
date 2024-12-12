@@ -32,7 +32,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTexture:
-        m_Texture: {fileID: 2800000, guid: 281a56a5c1563a941820f83497ef7871, type: 3}
+        m_Texture: {fileID: 2800000, guid: 35804856ec823e6428f43ecb12fb8b10, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MaskTex:
@@ -63,7 +63,9 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     - _WindScale: 1
-    - _windSpeed: 1
+    - _windRefMask: 5
+    - _windSpeed: 0.83
+    - _windStrength: 0.1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
