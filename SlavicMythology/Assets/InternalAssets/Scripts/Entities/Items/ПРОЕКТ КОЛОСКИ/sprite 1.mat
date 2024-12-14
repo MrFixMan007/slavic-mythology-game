@@ -64,7 +64,7 @@ Material:
     - _EnableExternalAlpha: 0
     - _WindScale: 1
     - _windRefMask: 5
-    - _windSpeed: 0.83
+    - _windSpeed: 0
     - _windStrength: 0.1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
@@ -72,6 +72,7 @@ Material:
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
     - _WindDirection: {r: 1, g: 0, b: 0, a: 0}
   m_BuildTextureStacks: []
+  m_AllowLocking: 1
 --- !u!114 &1297210025680865396
 MonoBehaviour:
   m_ObjectHideFlags: 11
@@ -84,4 +85,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  version: 7
+  version: 9

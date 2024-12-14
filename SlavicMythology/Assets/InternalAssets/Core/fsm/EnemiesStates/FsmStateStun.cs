@@ -24,12 +24,12 @@ namespace FSM.States
 
         public override void Enter()
         {
-            Vector2 vector = Rb.velocity;
+            Vector2 vector = Rb.linearVelocity;
             
-            // Рассчитываем обратную силу по осям X и Y, противоположную текущей скорости
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ X пїЅ Y, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             Vector2 force = -vector * 2f;
 
-            // Применяем силу к Rigidbody2D
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅ Rigidbody2D
             Rb.AddForce(force, ForceMode2D.Impulse);
             
             if (vector.x > _velocityFlag)

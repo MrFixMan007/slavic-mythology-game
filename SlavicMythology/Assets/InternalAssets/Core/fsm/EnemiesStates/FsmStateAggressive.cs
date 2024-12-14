@@ -73,7 +73,7 @@ namespace FSM.States
         {
             base.Update();
 
-            Vector2 vector = Rb.velocity;
+            Vector2 vector = Rb.linearVelocity;
             Debug.Log("y " + vector.y);
             Debug.Log("x " + vector.x);
 
