@@ -870,77 +870,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a68c5971f18f01f4d918b21488942941, type: 3}
---- !u!1 &1275282807
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1275282809}
-  - component: {fileID: 1275282808}
-  - component: {fileID: 1275282810}
-  m_Layer: 0
-  m_Name: "\u0421\u043E\u0437\u0434\u0430\u0442\u0435\u043B\u044C\u041A\u043E\u043B\u043E\u0441\u043A\u043E\u0432"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &1275282808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275282807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5f691d18d9807164ba5e9f6be5a59177, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  wheatPrefabs:
-  - {fileID: 3900509490093031815, guid: 947ee41f15194f442babfdc1b5395195, type: 3}
-  - {fileID: 4396676458070925684, guid: 84c36f4c6e1841949bea890766989964, type: 3}
-  - {fileID: 3950059323437550055, guid: fd66976abe820514286f26725e868d9e, type: 3}
-  - {fileID: 1021654422505466599, guid: 110067ff8e62bf64780ca23d77df1e3d, type: 3}
-  numberOfWheat: 130
-  spawnArea: {x: 5, y: 5}
---- !u!4 &1275282809
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275282807}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.718778, y: 0.19959778, z: -0.005387877}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1275282810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1275282807}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 92580163355063f45b94cde33e80bcaa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  materials:
-  - {fileID: 2100000, guid: af773597e673f7c42b7dc917967e2c54, type: 2}
-  - {fileID: 2100000, guid: bc87b500e7aa4f8458c65910d49c34b8, type: 2}
-  - {fileID: 2100000, guid: c2005ea8b7ccd204c8617c5e9c1759cd, type: 2}
-  - {fileID: 2100000, guid: cfc286ab586a05946a79f5d83bbf2265, type: 2}
-  windSpeed: 0
---- !u!43 &1402311387
+--- !u!43 &1259323636
 Mesh:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1105,6 +1035,77 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1275282807
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1275282809}
+  - component: {fileID: 1275282808}
+  - component: {fileID: 1275282810}
+  m_Layer: 0
+  m_Name: "\u0421\u043E\u0437\u0434\u0430\u0442\u0435\u043B\u044C\u041A\u043E\u043B\u043E\u0441\u043A\u043E\u0432"
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1275282808
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275282807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f691d18d9807164ba5e9f6be5a59177, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheatPrefabs:
+  - {fileID: 3900509490093031815, guid: 947ee41f15194f442babfdc1b5395195, type: 3}
+  - {fileID: 4396676458070925684, guid: 84c36f4c6e1841949bea890766989964, type: 3}
+  - {fileID: 3950059323437550055, guid: fd66976abe820514286f26725e868d9e, type: 3}
+  - {fileID: 1021654422505466599, guid: 110067ff8e62bf64780ca23d77df1e3d, type: 3}
+  numberOfWheat: 200
+  spawnArea: {x: 10, y: 10}
+  minDistance: 0.5
+--- !u!4 &1275282809
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275282807}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.718778, y: 0.19959778, z: -0.005387877}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1275282810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275282807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92580163355063f45b94cde33e80bcaa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materials:
+  - {fileID: 2100000, guid: af773597e673f7c42b7dc917967e2c54, type: 2}
+  - {fileID: 2100000, guid: bc87b500e7aa4f8458c65910d49c34b8, type: 2}
+  - {fileID: 2100000, guid: c2005ea8b7ccd204c8617c5e9c1759cd, type: 2}
+  - {fileID: 2100000, guid: cfc286ab586a05946a79f5d83bbf2265, type: 2}
+  windSpeed: 0.87
 --- !u!1 &1620484535
 GameObject:
   m_ObjectHideFlags: 0

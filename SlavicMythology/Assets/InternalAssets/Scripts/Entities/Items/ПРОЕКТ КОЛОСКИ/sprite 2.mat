@@ -64,7 +64,7 @@ Material:
     - _EnableExternalAlpha: 0
     - _WindScale: 1
     - _windRefMask: 5
-    - _windSpeed: 0.83
+    - _windSpeed: 0.87
     - _windStrength: 0.1
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
