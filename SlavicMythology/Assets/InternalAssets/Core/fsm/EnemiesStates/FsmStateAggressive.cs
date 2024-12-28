@@ -57,6 +57,7 @@ namespace FSM.States
         private float _velocityFlag = 1f;
 
         private MoveDirectionEnum _currentDirection;
+            //
 
         public FsmStateMeleeSimpleAgr(FsmEnemy fsm, Transform target, Path path, Rigidbody2D rb, float detectionRadius,
             float hp, SeekerMovement seekerMovement, ISimpleBattleService simpleBattleService, float attackRadius,
