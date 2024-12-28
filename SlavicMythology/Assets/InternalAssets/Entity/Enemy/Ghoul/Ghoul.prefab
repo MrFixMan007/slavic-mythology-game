@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 4964234676608745033}
   - component: {fileID: 3800950294144974191}
   - component: {fileID: 1429191114509611776}
+  - component: {fileID: 9008542485905259404}
   m_Layer: 8
   m_Name: Ghoul
   m_TagString: Enemy
@@ -78,7 +79,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -283,3 +284,33 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!114 &9008542485905259404
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5350957599802245981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7db70e0ea77f5ac47a8f4565a9406397, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ShadowGroup: 0
+  m_ComponentVersion: 1
+  m_HasRenderer: 1
+  m_UseRendererSilhouette: 1
+  m_CastsShadows: 1
+  m_SelfShadows: 0
+  m_ApplyToSortingLayers: 0000000067dcf7540f24115babb4710355063bccc3c57eef
+  m_ShapePath:
+  - {x: -0.7222571, y: -1.7606642, z: 0}
+  - {x: -0.48221302, y: -1.4367236, z: 0}
+  - {x: 0.46300936, y: -1.4175202, z: 0}
+  - {x: 0.6646464, y: -1.7798676, z: 0}
+  m_ShapePathHash: -1652325116
+  m_Mesh: {fileID: 0}
+  m_InstanceId: -48454
+  m_LocalBounds:
+    m_Center: {x: -0.028805315, y: -1.5986938, z: 0}
+    m_Extent: {x: 0.69345176, y: 0.18117374, z: 0}
