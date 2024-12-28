@@ -13,12 +13,12 @@ public class PlayerController : MonoBehaviour
     private Health _health;
     private bool isRolling = false;
     private Vector2 rollDirection;
-    private Vector2 movementDirection; // Направление ходьбы
+    private Vector2 movementDirection; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 
-    [SerializeField]  private float attackCooldown = 1f; //  кулдаун атаки
+    [SerializeField]  private float attackCooldown = 1f; //  пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
     private float lastAttackTime = 0f;
 
-    public Collider2D attackArea; // ссылка на коллайдер зоны атаки
+    public Collider2D attackArea; // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
     public float attackRadius = 1f;
     public int attackDamage = 10;
@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private Animator _animator;
     private AnimFsm _animFsm;
 
-    public Vector2 attackOffset = Vector2.zero; // Смещение центра атаки
+    public Vector2 attackOffset = Vector2.zero; // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
 
 
     [Inject]
@@ -89,7 +89,7 @@ public class PlayerController : MonoBehaviour
         }
 
         Vector2 moveDirection = movementDirection.normalized;
-        _rb.velocity = moveDirection * moveSpeed;
+        _rb.linearVelocity = moveDirection * moveSpeed;
         UpdateAttackAreaPosition();
     }
 
@@ -100,10 +100,10 @@ public class PlayerController : MonoBehaviour
             Vector2 adjustedPosition = movementDirection.normalized * attackRadius + attackOffset;
             attackArea.transform.localPosition = adjustedPosition;
 
-            // Проверка направления движения для отражения коллайдера
+            // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             if (movementDirection.y < 0)
             {
-                attackArea.transform.localScale = new Vector3(-1, 1, 1); // Отражение по горизонтали
+                attackArea.transform.localScale = new Vector3(-1, 1, 1); // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
             }
             else
             {
@@ -114,7 +114,7 @@ public class PlayerController : MonoBehaviour
 
     private void HandleAttack()
     {
-        if (Time.time - lastAttackTime >= attackCooldown && Input.GetMouseButtonDown(0)) // ЛКМ для атаки
+        if (Time.time - lastAttackTime >= attackCooldown && Input.GetMouseButtonDown(0)) // пїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
         {
             _animFsm.SetState(AnimEnums.AttackFront);
             DetermineAttackDirection();
@@ -135,22 +135,22 @@ public class PlayerController : MonoBehaviour
         {
             if (deltaX > 0)
             {
-                Debug.Log("Атака справа");
+                Debug.Log("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
             }
             else
             {
-                Debug.Log("Атака слева");
+                Debug.Log("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
             }
         }
         else
         {
             if (deltaY > 0)
             {
-                Debug.Log("Атака сверху");
+                Debug.Log("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ");
             }
             else
             {
-                Debug.Log("Атака снизу");
+                Debug.Log("пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ");
             }
         }
     }
@@ -174,12 +174,12 @@ public class PlayerController : MonoBehaviour
     {
         isRolling = true;
 
-        // Запуск анимации переката
+        // пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
         float elapsedTime = 0f;
         while (elapsedTime < rollDuration)
         {
-            _rb.velocity = rollDirection * rollSpeed;
+            _rb.linearVelocity = rollDirection * rollSpeed;
 
             elapsedTime += Time.deltaTime;
             yield return null;
@@ -194,7 +194,7 @@ public class PlayerController : MonoBehaviour
         {
             StopAllCoroutines();
             isRolling = false;
-            _rb.velocity = Vector2.zero;
+            _rb.linearVelocity = Vector2.zero;
         }
     }
         
@@ -211,9 +211,9 @@ public class PlayerController : MonoBehaviour
                 {
                     enemy.TakeDamage(attackDamage);
 
-                    // Отталкивание врага
+                    // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ
                     Vector2 pushDirection = (enemy.transform.position - transform.position).normalized;
-                    float pushForce = 0.1f; //  сила отталкивания
+                    float pushForce = 0.1f; //  пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
                     enemy.GetComponent<Rigidbody2D>().AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
                 }
             }

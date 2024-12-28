@@ -17,4 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/InternalAssets/UI/UIScenes/TestCutsceneDan.unity
     guid: 3828920dc8189fa46b5fa8f1e26c542c
+  - enabled: 1
+    path: Assets/InternalAssets/GameScenes/Generation_test.unity
+    guid: 8a29d0294c1aac54ebe7eecbd9bfb1fc
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0

@@ -56,7 +56,7 @@ namespace FSM.States
 
         public override void Enter()
         {
-            Vector2 vector = Rb.velocity;
+            Vector2 vector = Rb.linearVelocity;
             if (vector.x > _velocityFlag)
             {
                 Animator.SetTrigger(AnimEnums.IdleRight.ToString());
@@ -80,7 +80,7 @@ namespace FSM.States
 
         public override void Update()
         {
-            if (Rb.velocity.magnitude < MinSpeed)
+            if (Rb.linearVelocity.magnitude < MinSpeed)
             {
                 GameObject.Destroy();
             }
