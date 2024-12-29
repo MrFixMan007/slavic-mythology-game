@@ -68,7 +68,9 @@ namespace FSM.States
             _currentDirection = MoveDirectionEnum.Forward;
             _simpleBattleService = simpleBattleService;
         }
-//
+/// <summary>
+/// /
+/// </summary>
         public override void Update()
         {
             base.Update();
