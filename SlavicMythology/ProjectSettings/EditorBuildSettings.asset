@@ -20,5 +20,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/InternalAssets/GameScenes/Generation_test.unity
     guid: 8a29d0294c1aac54ebe7eecbd9bfb1fc
+  - enabled: 1
+    path: Assets/InternalAssets/GameScenes/Entrance.unity
+    guid: 18bc319ad1ea7c242b73a3a3e9c2bb3a
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0
