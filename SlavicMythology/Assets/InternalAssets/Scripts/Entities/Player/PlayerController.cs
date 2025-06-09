@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using FSM.Animation;
 using UnityEngine;
 using VContainer;
@@ -19,6 +20,8 @@ public class PlayerController : MonoBehaviour
     private float lastAttackTime = 0f;
 
     public Collider2D attackArea; // ������ �� ��������� ���� �����
+
+    public Collider2D useArea;
 
     public float attackRadius = 1f;
     public int attackDamage = 10;
@@ -57,6 +60,7 @@ public class PlayerController : MonoBehaviour
 
         HandleAttack();
         HandleRoll();
+        HandleUse();
     }
 
     private void HandleMovement()
@@ -186,6 +190,27 @@ public class PlayerController : MonoBehaviour
         }
 
         isRolling = false;
+    }
+
+    private void HandleUse()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            List<Collider2D> overlaps = new List<Collider2D>();
+            Physics2D.OverlapCollider(useArea, overlaps);
+
+            foreach (Collider2D overlap in overlaps)
+            {
+                if (overlap.CompareTag("Item"))
+                {
+                    Item newItem = overlap.GetComponent<Item>();
+                    if (newItem != null)
+                    {
+                        newItem.Use(gameObject);
+                    }
+                }
+            }
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

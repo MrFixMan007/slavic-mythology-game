@@ -107,8 +107,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b721388d954c614d81df79f0eaaf4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FollowSpeed: 5
-  y_offset: 4
+  FollowSpeed: 3
+  y_offset: 0
   target: {fileID: 0}
 --- !u!114 &1543411227602381302
 MonoBehaviour:
@@ -168,8 +168,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ComponentVersion: 1
   m_AssetsPPU: 16
-  m_RefResolutionX: 320
-  m_RefResolutionY: 160
+  m_RefResolutionX: 860
+  m_RefResolutionY: 430
   m_CropFrame: 0
   m_GridSnapping: 0
   m_FilterMode: 0

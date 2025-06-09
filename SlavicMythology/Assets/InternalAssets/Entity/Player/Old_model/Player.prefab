@@ -142,6 +142,7 @@ MonoBehaviour:
   rollDuration: 0.5
   attackCooldown: 0.61
   attackArea: {fileID: 8009995403299067937}
+  useArea: {fileID: 4968600401565907838}
   attackRadius: 1.23
   attackDamage: 20
   _animator: {fileID: 4124016294513264862}
@@ -404,8 +405,8 @@ MonoBehaviour:
   m_ShadowMesh:
     m_Mesh: {fileID: 0}
     m_LocalBounds:
-      m_Center: {x: 0.03125, y: 0, z: 0}
-      m_Extent: {x: 0.76875305, y: 1.956253, z: 0}
+      m_Center: {x: -0.005250931, y: -1.8729362, z: 0}
+      m_Extent: {x: 0.5964136, y: 0.2771225, z: 0}
     m_EdgeProcessing: 1
     m_TrimEdge: 0.2
     m_FlipX: 0
@@ -414,7 +415,7 @@ MonoBehaviour:
   m_CastingOption: 1
   m_PreviousTrimEdge: 0.2
   m_PreviousEdgeProcessing: 1
-  m_PreviousShadowCastingSource: 2
+  m_PreviousShadowCastingSource: 1
   m_PreviousShadowShape2DSource: {fileID: 4436798093304130711}
   references:
     version: 2

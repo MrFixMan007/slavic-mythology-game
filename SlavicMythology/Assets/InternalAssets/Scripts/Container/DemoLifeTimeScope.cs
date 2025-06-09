@@ -37,7 +37,7 @@ public class GameLifetimeScope : LifetimeScope
     private void Start()
     {
         var enemySpawner = Container.Resolve<IEnemySpawner>();
-        foreach (var roomTrigger in FindObjectsOfType<RoomTrigger2D>())
+        foreach (var roomTrigger in FindObjectsByType<RoomTrigger2D>(FindObjectsSortMode.None))
         {
             roomTrigger.SetEnemySpawner(enemySpawner);
         }

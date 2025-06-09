@@ -4,4 +4,21 @@
 PresetManager:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_DefaultPresets: {}
+  m_DefaultPresets:
+  - first:
+      m_NativeTypeID: 1006
+      m_ManagedTypePPtr: {fileID: 0}
+      m_ManagedTypeFallback: 
+    second:
+    - m_Preset: {fileID: 2655988077585873504, guid: 76cf257b0c7c4944592f95e439044fad, type: 2}
+      m_Filter: glob:"*_one.png"
+      m_Disabled: 0
+    - m_Preset: {fileID: 2655988077585873504, guid: b7d066355afe0244d836880cea1d30f4, type: 2}
+      m_Filter: glob:"*_sheet.png"
+      m_Disabled: 0
+    - m_Preset: {fileID: 2655988077585873504, guid: dd590d9f94f52ec46bb3b4360a66277a, type: 2}
+      m_Filter: glob:"*_map.png"
+      m_Disabled: 0
+    - m_Preset: {fileID: 2655988077585873504, guid: 88bea66f71ee46a478dfb6d758822e58, type: 2}
+      m_Filter: glob:"*_tileset.png"
+      m_Disabled: 0

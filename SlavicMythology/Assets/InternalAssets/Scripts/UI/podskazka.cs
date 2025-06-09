@@ -13,7 +13,7 @@ public class Podskazka : MonoBehaviour
     [SerializeField] private GameObject hintPanel;
     [SerializeField] private Button closeButton;
 
-    private bool isPlayerInRange = false;
+    //private bool isPlayerInRange = false;
     private GameObject player;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -42,7 +42,7 @@ public class Podskazka : MonoBehaviour
 
         itemNameText.text = itemName;
         itemDescriptionText.text = itemDescription;
-        isPlayerInRange = true;
+        //isPlayerInRange = true;
 
         if (closeButton != null)
         {
@@ -56,7 +56,7 @@ public class Podskazka : MonoBehaviour
         {
             hintPanel.SetActive(false);
         }
-        isPlayerInRange = false;
+        //isPlayerInRange = false;
     }
 
     private void DestroyHintPanel()
