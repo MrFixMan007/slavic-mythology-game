@@ -23,7 +23,7 @@ public class GameLoaderImpl : IGameLoadConsumer, IGameLoadProducer
 
     private void OnGameLoad()
     {
-        SceneManager.LoadScene(SceneRoutes.MainGameRoute);
+        SceneManager.LoadScene(SceneRoutes.DemoRoute);
     }
     
     private void OnIntroCutSceneGameLoad()

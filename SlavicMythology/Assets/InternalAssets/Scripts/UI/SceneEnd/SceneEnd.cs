@@ -26,7 +26,7 @@ public class SceneEnd : MonoBehaviour
         }
     }
 
-    IEnumerator AnimateSceneEnd()
+    public IEnumerator AnimateSceneEnd()
     {
         SceneEndPanel.SetActive(true);
 

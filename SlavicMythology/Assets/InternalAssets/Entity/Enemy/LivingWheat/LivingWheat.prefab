@@ -18,6 +18,7 @@ GameObject:
   - component: {fileID: 3800950294144974191}
   - component: {fileID: 1429191114509611776}
   - component: {fileID: 9008542485905259404}
+  - component: {fileID: 1276939685411496122}
   m_Layer: 8
   m_Name: LivingWheat
   m_TagString: Enemy
@@ -257,8 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90f0775202b0e2847a285fec3f2f0eac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lootList:
-  - {fileID: 11400000, guid: 1cc42d64d60b66a4da5df20fff5120a2, type: 2}
+  lootList: []
   rolls: 1
   dropForce: 1.5
 --- !u!114 &1429191114509611776
@@ -320,24 +320,40 @@ MonoBehaviour:
   m_ShadowShape2DComponent: {fileID: 0}
   m_ShadowShape2DProvider:
     rid: -2
-  m_ShadowCastingSource: -1
+  m_ShadowCastingSource: 1
   m_ShadowMesh:
     m_Mesh: {fileID: 0}
     m_LocalBounds:
-      m_Center: {x: 0, y: 0, z: 0}
-      m_Extent: {x: 0, y: 0, z: 0}
+      m_Center: {x: -0.028805315, y: -1.5986938, z: 0}
+      m_Extent: {x: 0.69345176, y: 0.18117374, z: 0}
     m_EdgeProcessing: 1
-    m_TrimEdge: -1
+    m_TrimEdge: 0
     m_FlipX: 0
     m_FlipY: 0
     m_InitialTrim: 0
   m_CastingOption: 1
   m_PreviousTrimEdge: 0
-  m_PreviousEdgeProcessing: 0
-  m_PreviousShadowCastingSource: 0
+  m_PreviousEdgeProcessing: 1
+  m_PreviousShadowCastingSource: 1
   m_PreviousShadowShape2DSource: {fileID: 0}
   references:
     version: 2
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
+--- !u!114 &1276939685411496122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5350957599802245981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d0c3b56216efe341971241c48f5b56e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lowSortingTag: Enemy
+  middleSortingTag: FOW
+  highSortingTag: FOW
+  activeRoom: 1

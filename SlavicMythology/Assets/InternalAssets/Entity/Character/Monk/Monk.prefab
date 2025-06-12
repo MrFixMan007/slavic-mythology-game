@@ -13,9 +13,10 @@ GameObject:
   - component: {fileID: 2210372605461072494}
   - component: {fileID: 2678352849705327721}
   - component: {fileID: 3945703801274181699}
+  - component: {fileID: 7054467386236873220}
   m_Layer: 0
   m_Name: Monk
-  m_TagString: Untagged
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -174,3 +175,16 @@ MonoBehaviour:
   middleSortingTag: FOW
   highSortingTag: FOW
   activeRoom: 1
+--- !u!114 &7054467386236873220
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8028874683272164914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afa05c74ba361a44589b4ab5a034087f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dialogueKnotName: pope

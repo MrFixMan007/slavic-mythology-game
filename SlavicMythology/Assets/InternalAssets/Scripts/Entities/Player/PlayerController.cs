@@ -209,6 +209,15 @@ public class PlayerController : MonoBehaviour
                         newItem.Use(gameObject);
                     }
                 }
+
+                if (overlap.CompareTag("NPC"))
+                {
+                    Talkative NPC = overlap.GetComponent<Talkative>();
+                    if (NPC != null)
+                    {
+                        NPC.SubmitPressed(InputEventContext.DEFAULT);
+                    }
+                }
             }
         }
     }
