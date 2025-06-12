@@ -13,5 +13,5 @@
 - Hash: 8812e45e910c1861e52122f88147e124bfc87bad
 - Explanation: Change to outdated code in A* and other files (getobjectOFtag->getobjectBYtag, isKinematic->bodyType == RigidbodyType2D.Kinematic), add item abstract class, item usage by player key press and sword (item), added simple inventory prototype, added inky dialogue system integration package. Added resources. Some changes in scene.
 ### Demo progress 3
-Hash: 
-Explanation: 
+- Hash: 35a832b6704d43dce62a96e2a62ca0c31d0c884e
+- Explanation: Added dialogue system base, changed scene obj states for debugging.
